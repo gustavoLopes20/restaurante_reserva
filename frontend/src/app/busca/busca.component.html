@@ -1,0 +1,57 @@
+<div class="container-busca">
+    <div class="topo">
+        <form (submit)="search($event)">
+            <div class="search form-field">
+                <input type="text" [(ngModel)]="model.StrRestaurante" placeholder="Nome de Restaurante" name="serachRestaurante">
+            </div>
+            <div class="form-field">
+                <input type="date" name="data" [(ngModel)]="model.Data">
+            </div>
+            <div class="form-field">
+                <input type="time" name="time" [(ngModel)]="model.Horario">
+            </div>
+            <div class="border-right form-field">
+                <select name="secQtdPessoa" [(ngModel)]="model.QtdPessoas">
+                    <option value="1">1 Pessoa</option>
+                    <option value="2">2 Pessoas</option>
+                    <option value="3">3 Pessoas</option>
+                    <option value="4">4 Pessoas</option>
+                    <option value="5">5 Pessoas</option>
+                    <option value="6">6 Pessoas</option>
+                    <option value="7">7 Pessoas</option>
+                    <option value="8">8 Pessoas</option>
+                    <option value="9">9 Pessoas</option>
+                </select>
+            </div>
+            <div class="bt">
+                <button mat-button type="submit"><i class="fa fa-search"></i> Buscar</button>
+            </div>
+        </form>
+    </div>
+    <div class="lst-search">
+        <div class="title-search">
+            <h2>Os melhores restaurantes em {{cidadeAtual.Descricao}}</h2>
+            <h4>{{qtdSearch}} restaurantes correspondem a sua pesquisa</h4>
+        </div>
+        <ul>
+            <li *ngFor="let item of lista">
+                <a [routerLink]="['/Reserva',item.RID]">
+                    <div class="image"><img [src]="item.ImgSrc" [alt]="item.Descricao"></div>
+                    <div class="description">
+                        <div class="tit">
+                            <h3>{{item.Descricao}}</h3>
+                        </div>
+                        <div class="endereco"><span>{{item.Endereco}}</span></div>
+                    </div>
+                    <div class="avaliacao">
+                        <div class="val">
+                            <h2>9,2</h2>
+                            <span>/10</span>
+                        </div>
+                        <div class="qtd"><span>77 avaliações</span></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

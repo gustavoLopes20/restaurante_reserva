@@ -1,0 +1,122 @@
+@import '../styles/cores.scss';
+.container-reserva {
+    width: 70%;
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+    .col-left {
+        width: 60%;
+        display: block;
+        float: left;
+        @media(max-width: 800px) {
+            width: 100%;
+        }
+        .topo {
+            width: 100%;
+            min-height: 35px;
+            display: block;
+            float: left;
+            .title {
+                width: 100%;
+                height: 40px;
+                display: block;
+                float: left;
+                h2 {
+                    color: $color-font-1;
+                }
+            }
+            .sub-title {
+                width: 100%;
+                height: 40px;
+                display: block;
+                float: left;
+                h4 {
+                    color: $color-font-1;
+                }
+            }
+        }
+        .body-left {
+            width: 100%;
+            min-height: 100px;
+            display: block;
+            float: left;
+            .image {
+                width: 100%;
+                height: 337px;
+                display: block;
+                float: left;
+                img {
+                    width: 450px;
+                    height: 337px;
+                }
+            }
+        }
+        .info {
+            width: 100%;
+            min-height: 100px;
+            display: block;
+            float: left;
+        }
+    }
+    .col-right {
+        width: 40%;
+        display: block;
+        float: left;
+        min-height: 100px;
+        @media(max-width: 800px) {
+            width: 100%;
+        }
+        .topo-right {
+            width: 100%;
+            height: 35px;
+            display: block;
+            float: left;
+            .title-topo {
+                width: 100%;
+                height: 35px;
+                display: block;
+                float: left;
+                h3 {
+                    color: $color-font-1;
+                    text-align: center;
+                }
+            }
+        }
+        .body-right {
+            width: 100%;
+            display: block;
+            float: left;
+            .container-form {
+                display: block;
+                float: left;
+                width: 100%;
+                form {
+                    display: block;
+                    float: left;
+                    width: 100%;
+                    .form-field {
+                        width: 100%;
+                        height: 40px;
+                        display: block;
+                        float: left;
+                        margin-top: 10px;
+                        input {
+                            width: 100%;
+                            height: 40px;
+                            padding: 5px;
+                        }
+                        select {
+                            width: 100%;
+                            height: 40px;
+                            padding: 5px;
+                        }
+                        button {
+                            background-color: $color-green;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
