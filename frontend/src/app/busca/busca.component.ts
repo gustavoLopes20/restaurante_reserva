@@ -57,6 +57,21 @@ export class BuscaComponent implements OnInit {
     });
   }
 
+    //
+    // serach(value:string) {
+    //   let aux:Array<any> = [];
+  
+    //   this.lstCidades.forEach( cidade => {
+    //       for(let i = 0; i < value.length; i++){
+    //          if(value[i].toLocaleUpperCase() == cidade.Descricao[i].toLocaleUpperCase()){
+    //             aux.push(cidade);
+    //             break;
+    //          }
+    //       }
+    //   });
+    //   return aux;
+    // }
+
   //buscando restaurantes
   search(event: Event) {
     event.preventDefault();
