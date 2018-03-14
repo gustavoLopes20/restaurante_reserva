@@ -1,7 +1,7 @@
-# restaurante_reserva
+# Restaurante_reserva
 
 ** Projeto em Desenvolvimento
-
+** Na pasta Docs contém as capturas de telas em desenvolvimento
 
 <h2>Introdução</h2>
 
