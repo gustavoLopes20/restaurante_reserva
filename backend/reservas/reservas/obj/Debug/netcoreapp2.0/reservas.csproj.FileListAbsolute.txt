@@ -1,0 +1,11 @@
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\bin\Debug\netcoreapp2.0\reservas.deps.json
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\bin\Debug\netcoreapp2.0\reservas.runtimeconfig.json
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\bin\Debug\netcoreapp2.0\reservas.runtimeconfig.dev.json
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\bin\Debug\netcoreapp2.0\reservas.dll
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\obj\Debug\netcoreapp2.0\reservas.csprojResolveAssemblyReference.cache
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\obj\Debug\netcoreapp2.0\reservas.csproj.CoreCompileInputs.cache
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\obj\Debug\netcoreapp2.0\reservas.AssemblyInfoInputs.cache
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\obj\Debug\netcoreapp2.0\reservas.AssemblyInfo.cs
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\bin\Debug\netcoreapp2.0\reservas.pdb
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\obj\Debug\netcoreapp2.0\reservas.dll
+C:\Users\gusta\Documents\Desenvolvimento\restaurante\backend\reservas\reservas\obj\Debug\netcoreapp2.0\reservas.pdb

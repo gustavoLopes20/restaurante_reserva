@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
@@ -17,27 +15,24 @@ import { MatTooltipModule} from '@angular/material';
 import { MatDatepickerModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
-import { MatIconModule } from '@angular/material';
-import { MatTabsModule } from '@angular/material';
 import 'hammerjs';
 
-import { HomeComponent } from './home/home.component';
-import { ReservaComponent } from './reserva/reserva.component';
+import { AppComponent } from './app.component';
 import { BuscaComponent } from './busca/busca.component';
-import { BuscaService } from './busca.service';
+import { SearchService } from './search.service';
+import { ReservaComponent } from './reserva/reserva.component';
 
 const rotas: Routes = [
-    { path: '', component: HomeComponent, pathMatch: "full" },
-    { path: 'Search/:str', component: BuscaComponent },
-    { path: 'Reserva/:id', component: ReservaComponent },
- ];
+  //{ path: '', component: HomeComponent, pathMatch: "full" },
+  { path: 'Search/:RID', component: BuscaComponent },
+  { path: 'Reserva/:RID', component: ReservaComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ReservaComponent,
-    BuscaComponent
+    BuscaComponent,
+    ReservaComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +40,10 @@ const rotas: Routes = [
     HttpModule,
     BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule,
     MatRadioModule, MatProgressBarModule, MatDialogModule, MatProgressSpinnerModule,
-    MatTooltipModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, MatTabsModule,
+    MatTooltipModule, MatDatepickerModule, MatNativeDateModule,
     RouterModule.forRoot(rotas)
   ],
-  providers: [BuscaService],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
