@@ -11,8 +11,10 @@
 <h2>Tecnologias</h2>
 
 <h3>Frontend</h3>
-<p>. JavaScript/TypeScript, HTML, CSS/SCSS -> Angular 2/4, Angular Material</p>
+<p> JavaScript/TypeScript, HTML, CSS/SCSS -> Angular 2/4, Angular Material</p>
 
 <h3>Backend</h3>
+
+<p> ASP .NET CORE C#, Entity framework Core, MySql </p>
 
 
