@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppComponent } from '../app.component';
+import { BuscasComponent } from '../buscas.component';
 
 @Component({
-  selector: 'app-busca',
-  templateUrl: './busca.component.html',
-  styleUrls: ['./busca.component.scss']
+  selector: 'app-cidades',
+  templateUrl: './cidades.component.html',
+  styleUrls: ['./cidades.component.scss']
 })
-export class BuscaComponent implements OnInit {
-
+export class CidadesComponent implements OnInit {
+  
   public lista: Array<any> = [];
   public lstAux: Array<any> = [];
   public lstCategoria: Array<any> = [];
@@ -20,7 +20,7 @@ export class BuscaComponent implements OnInit {
 
   public click:boolean = false;
 
-  constructor(private router: ActivatedRoute, private appComponent:AppComponent) { }
+  constructor(private router: ActivatedRoute, private appComponent:BuscasComponent) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -36,7 +36,7 @@ export class BuscaComponent implements OnInit {
       let city:any = lstCidades.find(a => a.RID == local);
       city.Descricao = city.Descricao.concat("-",city.Uf);
       
-      if(city){
+      if(typeof city  != "undefined"){
         this.cidadeAtual = city;
 
         switch(city.RID){
@@ -61,4 +61,5 @@ export class BuscaComponent implements OnInit {
     else
       this.click = false;  
   }
+
 }

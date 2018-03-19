@@ -5,7 +5,7 @@
     </div>
     <ul>
         <li *ngFor="let item of lista">
-            <a [routerLink]="['/Reserva', item.RID]">
+            <a [routerLink]="['/Buscas/Reserva', item.RID]">
                 <div class="image"><img [src]="item.ImgSrc" [alt]="item.Descricao"></div>
                 <div class="description">
                     <div class="tit">

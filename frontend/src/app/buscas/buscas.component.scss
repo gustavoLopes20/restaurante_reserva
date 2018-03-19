@@ -1,0 +1,336 @@
+@import '../styles/cores.scss';
+.cabecalho {
+    width: 100%;
+    min-height: 60px;
+    display: block;
+    float: left;
+    color: white;
+    &.active-header {
+        display: block;
+    }
+    .area-1 {
+        display: block;
+        float: left;
+        width: 100%;
+        background-color: $color-primary;
+        .logo {
+            width: 150px;
+            height: 60px;
+            display: block;
+            float: left;
+            margin-left: 30px;
+            padding-top: 14px;
+            @media(max-width: 800px) {
+                width: 100%;
+                margin: 0;
+            }
+            span {
+                font-size: 24px;
+                font-weight: bold;
+                user-select: none;
+                @media(max-width: 800px) {
+                    margin: 0 auto;
+                    width: 150px;
+                    display: block;
+                }
+            }
+        }
+        .separador {
+            width: 1px;
+            height: 25px;
+            border-left: 1px solid rgba(222, 222, 222, .2);
+            display: block;
+            float: left;
+            margin: 18px 10px 0;
+            @media(max-width: 800px) {
+                display: none;
+            }
+        }
+        .local {
+            width: 180px;
+            min-height: 60px;
+            display: block;
+            float: left;
+            padding-top: 6px;
+            @media(max-width: 800px) {
+                width: 170px;
+                margin-left: 13px;
+            }
+            button {
+                width: 100%;
+                height: 54px;
+                outline: none;
+                border: 0;
+                cursor: pointer;
+                color: white;
+                background-color: transparent;
+                padding: 10px;
+                &.click {
+                    background-color: #fff;
+                    color: black;
+                }
+                .city {
+                    display: block;
+                    float: left;
+                    font-size: 17px;
+                    span {
+                        margin-left: 5px;
+                    }
+                }
+                .icon-right {
+                    display: block;
+                    float: right;
+                    button {
+                        width: 40px;
+                        height: 30px;
+                        outline: none;
+                        border: 0;
+                        cursor: pointer;
+                        color: white;
+                        background-color: transparent;
+                        transition: all .2s ease-in;
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.5);
+                        }
+                    }
+                }
+            }
+            .lst-itens {
+                display: none;
+                float: left;
+                width: 300px;
+                min-height: 300px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .25);
+                position: absolute;
+                z-index: 9999;
+                color: black;
+                padding: 10px;
+                &.active {
+                    display: block;
+                }
+                .topo-lst {
+                    display: block;
+                    float: left;
+                    width: 100%;
+                    height: 50px;
+                    .input-search {
+                        display: block;
+                        float: left;
+                        height: 30px;
+                        width: 90%;
+                        border: 1px solid rgb(155, 155, 155);
+                        .inp {
+                            display: block;
+                            float: left;
+                            width: 90%;
+                            height: 100%;
+                            input {
+                                width: 100%;
+                                height: 100%;
+                                border: 0;
+                                outline: none;
+                                padding: 5px;
+                            }
+                        }
+                        .icon {
+                            display: block;
+                            float: left;
+                            padding: 5px;
+                        }
+                    }
+                }
+                .body-lst {
+                    display: block;
+                    float: left;
+                    width: 100%;
+                    ul {
+                        display: block;
+                        li {
+                            list-style: none;
+                            display: block;
+                            float: left;
+                            width: 100%;
+                            height: 30px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .basic-serach {
+            width: 450px;
+            min-height: 60px;
+            display: block;
+            float: left;
+            padding-top: 15px;
+            margin-left: 37px;
+            @media(max-width: 800px) {
+                width: 95%;
+                margin-left: 2.5%;
+                margin-right: 2.5%;
+            }
+            .form-field {
+                width: 90%;
+                height: 35px;
+                display: block;
+                float: left;
+                border: 1px solid rgb(155, 155, 155);
+                background-color: white;
+                .inp {
+                    display: block;
+                    float: left;
+                    width: 93%;
+                    input {
+                        width: 100%;
+                        height: 33px;
+                        padding: 5px;
+                        font-family: inherit;
+                        font-size: 16px;
+                        border: 0;
+                        outline: none;
+                    }
+                }
+                .icon {
+                    display: block;
+                    float: left;
+                    padding-top: 7px;
+                    i {
+                        font-size: 16px;
+                        color: $color-font-1;
+                    }
+                }
+            }
+            .buscarMais {
+                width: 30px;
+                height: 30px;
+                display: block;
+                float: left;
+                padding-top: 7px;
+                margin-left: 10px;
+                @media(max-width: 800px) {
+                    padding: 0;
+                    margin: 0;
+                }
+                button {
+                    user-select: none;
+                    outline: none;
+                    border: 0;
+                    cursor: pointer;
+                    color: white;
+                    background-color: transparent;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .user {
+            width: 200px;
+            height: 60px;
+            display: block;
+            float: right;
+            padding-top: 14px;
+            @media(max-width: 800px) {
+                width: 116px;
+                position: relative;
+                bottom: 114px;
+            }
+            button {
+                width: 100px;
+                height: 35px;
+                outline: none;
+                cursor: pointer;
+                border: 0;
+            }
+        }
+    }
+    .area-2 {
+        display: none;
+        float: left;
+        width: 100%;
+        background-color: white;
+        &.active-area-2 {
+            display: block;
+        }
+        .advanced-search {
+            width: 100%;
+            min-height: 50px;
+            display: table;
+            float: left;
+            box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .25);
+            transition: all .2s ease-in;
+            form {
+                display: table;
+                width: 55%;
+                margin: 0 auto;
+                @media(max-width: 800px) {
+                    width: 100%;
+                    margin: 0;
+                    float: left;
+                }
+                @media(min-width:800px) and (max-width:1200px) {
+                    width: 90%;
+                }
+                .form-field {
+                    width: 300px;
+                    height: 50px;
+                    display: block;
+                    float: left;
+                    border: 1px solid darken($color-light, 10%);
+                    @media(max-width: 800px) {
+                        width: 100%;
+                    }
+                    &.combobox {
+                        width: 200px;
+                        @media(max-width: 800px) {
+                            width: 100%;
+                            border: 0;
+                            border-bottom: 1px solid darken($color-light, 10%);
+                        }
+                    }
+                    &.menor {
+                        width: 200px;
+                        @media(max-width: 800px) {
+                            width: 100%;
+                            border: 0;
+                            border-bottom: 1px solid darken($color-light, 10%);
+                        }
+                    }
+                    input {
+                        width: 100%;
+                        height: 48px;
+                        font-size: 17px;
+                        font-family: inherit;
+                        outline: none;
+                        padding: 5px;
+                        border: 0;
+                    }
+                    select {
+                        width: 100%;
+                        height: 48px;
+                        font-size: 17px;
+                        font-family: inherit;
+                        outline: none;
+                        padding: 5px;
+                        border: 0;
+                    }
+                    &.bt {
+                        width: 100px;
+                        button {
+                            background-color: $color-green;
+                            color: white;
+                            height: 48px;
+                            border-radius: 0;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.routes {
+    display: table;
+    width: 100%;
+}

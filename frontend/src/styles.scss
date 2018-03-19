@@ -16,6 +16,17 @@ body {
     max-width: 92vw !important;
 }
 
+.mat-spinner {
+    width: 300px!important;
+    height: 300px!important;
+    margin: 0 auto!important;
+}
+
+.mat-progress-spinner svg {
+    width: 533px!important;
+    height: 200px!important;
+}
+
 textarea {
     resize: none;
 }
