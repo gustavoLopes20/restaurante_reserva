@@ -14,7 +14,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
-using reservas.Data;
+using reservas.WebCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Newtonsoft.Json.Serialization;
 
 namespace reservas
 {
@@ -30,24 +33,30 @@ namespace reservas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //config db
             var connection = Configuration["ConexaoMySql:MySqlConnectionString"];
             services.AddDbContext<ReservasContext>(options =>
                 options.UseMySql(connection)
             );
-            // Add framework services.
+
+            // Add framework services. AllowSpecificOrigin
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllHeaders",
                        builder =>
                        {
                            builder.AllowAnyOrigin()
-                                  .AllowAnyHeader()
-                                  .AllowAnyMethod()
-                                  .AllowCredentials();
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials();
                        });
             });
 
-            services.AddMvc();
+            // Add framework services.
+            services.AddMvc()
+            .AddJsonOptions(json => {
+                json.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
         }
 
 
@@ -62,7 +71,13 @@ namespace reservas
             }
             InicializaBD.Initialize(context);
 
-
+            app.UseCors((cfg) => {
+                cfg.AllowAnyHeader();
+                cfg.AllowAnyOrigin();
+                cfg.AllowAnyMethod();
+            });
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
             // Serve my app-specific default file, if present.
             DefaultFilesOptions options = new DefaultFilesOptions();
@@ -71,9 +86,10 @@ namespace reservas
             app.UseDefaultFiles(options);
             app.UseStaticFiles();
 
-            app.UseCors("AllowAllHeaders");
+   
+            //app.UseCors("AllowAllHeaders");
             app.UseMvc();
-
+           
         }
     }
 }

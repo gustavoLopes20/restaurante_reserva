@@ -1,0 +1,163 @@
+[{
+        "Id": 1,
+        "Nome": "Acre",
+        "Sigla": "AC",
+        "RID": "51VDBB6UCRV5UYU5T3QLV85H5481JRP5"
+    },
+    {
+        "Id": 2,
+        "Nome": "Alagoas",
+        "Sigla": "AL",
+        "RID": "CGY10WPQJNQUYYOYE2WSXEI76NIGCELV"
+    },
+    {
+        "Id": 3,
+        "Nome": "Amazonas",
+        "Sigla": "AM",
+        "RID": "BZ2O93F7N9CHRKTGQJXQ47I8714MOJOE"
+    },
+    {
+        "Id": 4,
+        "Nome": "Amapá",
+        "Sigla": "AP",
+        "RID": "C5T869ZLXZFXBAPW4CZ2R41ER4RH83TD"
+    },
+    {
+        "Id": 5,
+        "Nome": "Bahia",
+        "Sigla": "BA",
+        "RID": "V8FW1UJQUM3F2U67LIRMTVWHEPRCSSM4"
+    },
+    {
+        "Id": 6,
+        "Nome": "Ceará",
+        "Sigla": "CE",
+        "RID": "FBBD535J2IIFBVL67T5ZLHTAM7SLDH8B"
+    },
+    {
+        "Id": 7,
+        "Nome": "Distrito Federal",
+        "Sigla": "DF",
+        "RID": "9890T3CSNHTKNRGSDVE8WWS8RB07KTGU"
+    },
+    {
+        "Id": 8,
+        "Nome": "Espírito Santo",
+        "Sigla": "ES",
+        "RID": "KGFCWVMDRMMDXIW51AISD9OMQBIRCEH4"
+    },
+    {
+        "Id": 9,
+        "Nome": "Goiás",
+        "Sigla": "GO",
+        "RID": "B9AGLD6RIARKKOKJO5GKKYQK22WUN5AN"
+    },
+    {
+        "Id": 10,
+        "Nome": "Maranhão",
+        "Sigla": "MA",
+        "RID": "FSCXIQUYD0KCSECB09DH87TNTZOSRLEM"
+    },
+    {
+        "Id": 11,
+        "Nome": "Minas Gerais",
+        "Sigla": "MG",
+        "RID": "9DE1MWA8LSGTON2XZU3N23OI8ZESCBG2"
+    },
+    {
+        "Id": 12,
+        "Nome": "Mato Grosso do Sul",
+        "Sigla": "MS",
+        "RID": "W7CO9KZD8E6Q098F7026R0UGY63WSS5J"
+    },
+    {
+        "Id": 13,
+        "Nome": "Mato Grosso",
+        "Sigla": "MT",
+        "RID": "LO7RLNXO5ZPX78S809ULJKK5M60DRCVP"
+    },
+    {
+        "Id": 14,
+        "Nome": "Pará",
+        "Sigla": "PA",
+        "RID": "JWELCR4UCNB2L7JZO56T8UAADCEOXU72"
+    },
+    {
+        "Id": 15,
+        "Nome": "Paraíba",
+        "Sigla": "PB",
+        "RID": "E9OK4G6JF9I5ISTOWAYWGCRYVDH9MP7S"
+    },
+    {
+        "Id": 16,
+        "Nome": "Pernambuco",
+        "Sigla": "PE",
+        "RID": "QIXLT85I8XN8LF2VS01W6LWBRZZ0866Z"
+    },
+    {
+        "Id": 17,
+        "Nome": "Piauí",
+        "Sigla": "PI",
+        "RID": "C0PA4H5YEQXSYTNQLWQWXKVEWW44JFJC"
+    },
+    {
+        "Id": 18,
+        "Nome": "Paraná",
+        "Sigla": "PR",
+        "RID": "0Y6UZ20L5DSQXDM8LIOMQKB1FKNINAO8"
+    },
+    {
+        "Id": 19,
+        "Nome": "Rio de Janeiro",
+        "Sigla": "RJ",
+        "RID": "GV2AX30T5F1T2FRSJ5SA06WQWFOPOS74"
+    },
+    {
+        "Id": 20,
+        "Nome": "Rio Grande do Norte",
+        "Sigla": "RN",
+        "RID": "ZTJCLMKRS4RKSS89358RSNIJ9LOSOKFN"
+    },
+    {
+        "Id": 21,
+        "Nome": "Rondônia",
+        "Sigla": "RO",
+        "RID": "I74I5OG7VBR5PL8EGOWSTPLLL9DA82CH"
+    },
+    {
+        "Id": 22,
+        "Nome": "Roraima",
+        "Sigla": "RR",
+        "RID": "ZECVXZDOYB6R5M3XNJM9YW32VS76LG82"
+    },
+    {
+        "Id": 23,
+        "Nome": "Rio Grande do Sul",
+        "Sigla": "RS",
+        "RID": "8JGLJMQQKH4RS4P8FPXYQDTCKJAF2HDS"
+    },
+    {
+        "Id": 24,
+        "Nome": "Santa Catarina",
+        "Sigla": "SC",
+        "RID": "DETVFSOA35YQ2MK0C805TKL50EB9MLYD"
+    },
+    {
+        "Id": 25,
+        "Nome": "Sergipe",
+        "Sigla": "SE",
+        "RID": "ELOOL32XBW4UOCJ89JC3RH932Y5BQPYS"
+    },
+    {
+        "Id": 26,
+        "Nome": "São Paulo",
+        "Sigla": "SP",
+        "RID": "HVMR75OJFC46P1QX4D9CI5V6MVVX81HV"
+    },
+    {
+        "Id": 27,
+        "Nome": "Tocantins",
+        "Sigla": "TO",
+        "RID": "8MN202AD43XPNCOBHHHNPVJMAPEMK1KO"
+    }
+]

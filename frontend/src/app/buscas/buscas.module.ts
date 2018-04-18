@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -12,18 +12,24 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import 'hammerjs';
 
 import { BuscasComponent } from './buscas.component';
-import { AuthenticationService } from '../authentication.service';
 import { ApiService } from '../api.service';
-import { SearchService } from '../search.service';
-
-import { CidadesComponent } from './cidades/cidades.component';
+import { AuthService } from '../auth.service';
+import { DataService } from '../Data/data.service';
+import { BuscasService } from './buscas.service';
 import { LocalizacaoService } from '../localizacao.service';
+
 import { ReservaComponent } from './reserva/reserva.component';
+import { HomeComponent } from './home/home.component';
+import { RestaurantesComponent } from './restaurantes/restaurantes.component';
+
+
 
 const rotas: Routes = [
   { path: 'Buscas', component: BuscasComponent, children: [
-     { path: 'Cidade/:RID', component: CidadesComponent },
-     { path: 'Reserva/:RID', component: ReservaComponent },
+    { path: '', component: HomeComponent, pathMatch: "full" },
+    { path: 'Home', component: HomeComponent},
+    { path: 'Restaurantes', component: RestaurantesComponent},
+    { path: 'Reserva/:RID', component: ReservaComponent },
   ] }
 ];
 
@@ -34,14 +40,16 @@ const rotas: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forChild(rotas),
+    ReactiveFormsModule,
     BrowserAnimationsModule, MatButtonModule, MatProgressSpinnerModule,
   ],
   declarations: [
     BuscasComponent,
-    CidadesComponent,
-    ReservaComponent
+    ReservaComponent,
+    HomeComponent,
+    RestaurantesComponent
   ],
-  providers: [SearchService,ApiService, AuthenticationService, LocalizacaoService],
+  providers: [ApiService, AuthService, LocalizacaoService, DataService, BuscasService],
   bootstrap: [BuscasComponent]
 })
 export class BuscasModule { }

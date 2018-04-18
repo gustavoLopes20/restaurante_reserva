@@ -1,0 +1,75 @@
+<div class="container">
+
+    <div class="formulario">
+
+        <div class="topo">
+            <div class="bts">
+                <button mat-button type="button" class="new" (click)="newItem()"> <i class="fa fa-plus"></i> Novo</button>
+                <button mat-button type="submit" class="save" (click)="saveItem()" form="form01"> <i class="fa fa-floppy-o"></i> Salvar</button>
+                <button mat-button type="button" class="del" (click)="delItem()"> <i class="fa fa-times"></i> Excluir</button>
+                <!-- <button mat-button type="button" class="clear" (click)="resetItem()"> <i class="fa fa-repeat"></i> Limpar</button> -->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <form [formGroup]="formulario" id="form01">
+
+                <div class="form-field">
+                    <label>Número:</label>
+                    <input type="number" formControlName="numeroMesa">
+                </div>
+                <div class="form-field">
+                    <label>Qtd pessoas:</label>
+                    <input type="number" formControlName="qtdMaxPessoas">
+                </div>
+
+                <div class="form-field">
+                    <label>Data:</label>
+                    <input type="date" formControlName="dataDisponivel">
+                </div>
+
+                <div class="form-field">
+                    <label>Horário:</label>
+                    <input type="time" formControlName="horarioDisponivel">
+                </div>
+
+                <div class="form-field">
+                    <label>Estabelecimento:</label>
+                    <select formControlName="empresaId"> 
+                    <option *ngFor="let option of lstEstab" [value]="option.Id">{{option.RazaoSocial}}</option>
+                  </select>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="listagem">
+        <table style="display:none">
+
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>QtdMax pessoas</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Empresa</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- <tr *ngFor="let mesa of lstMesas" (click)="editarItem(mesa)">
+                    <td>{{mesa.NumeroMesa}}</td>
+                    <td>{{mesa.QtdMaxPessoas}}</td>
+                    <td>{{mesa.DataFMT}}</td>
+                    <td>{{mesa.HorarioFMT}}</td>
+                    <td>{{mesa.Empresa.RazaoSocial}}</td>
+                </tr> -->
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

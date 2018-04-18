@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ApiService } from './api.service';
+import { AppDataObject, Teste } from './Data/dataModel';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
 
-  constructor(private router:Router) { }
+  constructor() { }
 
-  ngOnInit() { 
-    this.router.navigate(['/Buscas']);
+  ngOnInit() {
   }
 
-
-
- 
 }

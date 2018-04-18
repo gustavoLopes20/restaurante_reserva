@@ -2797,7 +2797,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/11.0.1": {
+      "Newtonsoft.Json/11.0.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -7791,10 +7791,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.1": {
-      "sha512": "pNN4l+J6LlpIvHOeNdXlwxv39NPJ2B5klz+Rd2UQZIx30Squ5oND1Yy3wEAUoKn0GPUj6Yxt9lxlYWQqfZcvKg==",
+    "Newtonsoft.Json/11.0.2": {
+      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.1",
+      "path": "newtonsoft.json/11.0.2",
       "files": [
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
@@ -7815,7 +7815,7 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.1.nupkg.sha512",
+        "newtonsoft.json.11.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec"
       ]
     },
@@ -12847,7 +12847,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "MySql.Data >= 6.10.6",
-      "Newtonsoft.Json >= 11.0.1",
+      "Newtonsoft.Json >= 11.0.2",
       "Pomelo.EntityFrameworkCore.MySql >= 2.0.1",
       "Pomelo.EntityFrameworkCore.MySql.Design >= 1.1.2"
     ]
@@ -12858,9 +12858,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "C:\\Users\\gusta\\Documents\\Desenvolvimento\\restaurante\\backend\\reservas\\reservas\\reservas.csproj",
       "projectName": "reservas",
@@ -12896,18 +12893,6 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Pomelo.EntityFrameworkCore.MySql": {
-            "target": "Package",
-            "version": "2.0.1"
-          },
-          "Microsoft.EntityFrameworkCore.Tools": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
-          "MySql.Data": {
-            "target": "Package",
-            "version": "6.10.6"
-          },
           "Microsoft.NETCore.App": {
             "target": "Package",
             "version": "2.0.0",
@@ -12917,13 +12902,25 @@
             "target": "Package",
             "version": "2.0.0"
           },
-          "Pomelo.EntityFrameworkCore.MySql.Design": {
+          "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
-            "version": "1.1.2"
+            "version": "2.0.0"
+          },
+          "MySql.Data": {
+            "target": "Package",
+            "version": "6.10.6"
           },
           "Newtonsoft.Json": {
             "target": "Package",
-            "version": "11.0.1"
+            "version": "11.0.2"
+          },
+          "Pomelo.EntityFrameworkCore.MySql": {
+            "target": "Package",
+            "version": "2.0.1"
+          },
+          "Pomelo.EntityFrameworkCore.MySql.Design": {
+            "target": "Package",
+            "version": "1.1.2"
           }
         },
         "imports": [

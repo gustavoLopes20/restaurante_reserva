@@ -1,0 +1,162 @@
+@import '../../styles/cores.scss';
+.container {
+    width: 90%;
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+    .formulario {
+        width: 100%;
+        min-height: 50px;
+        display: table;
+        float: left;
+        border: 1px solid $color-border;
+        //margin-bottom: 10px;
+        .topo {
+            width: 100%;
+            min-height: 45px;
+            display: block;
+            float: left;
+            border-bottom: 1px solid $color-border;
+            margin-bottom: 20px;
+            padding: 5px;
+            .bts {
+                display: block;
+                float: left;
+                button {
+                    transition: all .3s ease-in;
+                    border-radius: 0;
+                    font-size: 17px;
+                    display: block;
+                    float: left;
+                    margin: 0 2px 0 2px;
+                    background-color: $color-light;
+                    color: white;
+                    @media(max-width: 800px) {
+                        margin: 3px;
+                    }
+                    &.new {
+                        background-color: lighten($color-primary, 10%);
+                    }
+                    &.save {
+                        background-color: $color-green;
+                    }
+                    &.clear {
+                        background-color: $color-orange;
+                    }
+                    &.del {
+                        background-color: $color-red;
+                    }
+                }
+            }
+        }
+        .form-group {
+            width: 100%;
+            display: block;
+            float: left;
+            padding: 10px;
+            form {
+                width: 100%;
+                display: block;
+                float: left;
+                .form-field {
+                    display: block;
+                    float: left;
+                    width: 280px;
+                    min-height: 35px;
+                    margin-bottom: 20px;
+                    margin: 5px;
+                    label {
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                        display: block;
+                        float: left;
+                        width: 100%;
+                    }
+                    textarea {
+                        width: 100%;
+                        height: 100px;
+                        resize: none;
+                        padding: 10px;
+                        font-size: 17px;
+                        font-family: inherit;
+                        &:disabled {
+                            cursor: not-allowed;
+                        }
+                    }
+                    input {
+                        height: 35px;
+                        font-size: 17px;
+                        width: 100%;
+                        float: left;
+                        padding: 5px;
+                        &:disabled {
+                            cursor: not-allowed;
+                        }
+                    }
+                    select {
+                        height: 35px;
+                        font-size: 17px;
+                        width: 100%;
+                        float: left;
+                        padding: 5px;
+                        &:disabled {
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .listagem {
+        width: 100%;
+        display: block;
+        float: left;
+        border: 1px solid $color-border;
+        margin-bottom: 30px;
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fff;
+            thead {
+                display: block;
+                background-color: #333;
+                color: #fff;
+                height: 45px;
+                tr {
+                    width: 100%;
+                    height: 45px;
+                    display: table;
+                    th {
+                        padding: 5px;
+                        width: 20%;
+                        height: 35px;
+                        text-align: left;
+                    }
+                }
+            }
+            tbody {
+                display: block;
+                overflow-y: scroll;
+                height: 250px;
+                tr {
+                    border-bottom: 1px solid #999;
+                    width: 100%;
+                    transition: all .2s ease-in;
+                    height: 45px;
+                    display: table;
+                    &:hover {
+                        background-color: $color-green;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                    td {
+                        padding: 5px;
+                        width: 20%;
+                        height: 35px;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+<header class="cabecalho">
+    <div class="area-1">
+        <div class="logo">
+            <a [routerLink]="['/Buscas']"><span>Reservas <i class="fa fa-cutlery"></i></span></a>
+        </div>
+    </div>
+    <div class="area-2">
+        <nav class="menu">
+            <div class="bt-open">
+                <button type="button" (click)="clickMenu(true)"><i class="fa fa-align-justify"></i></button>
+            </div>
+            <div [ngClass]="{'lst':true, 'active-lst':click}">
+                <div class="bt-close">
+                    <button type="button" (click)="clickMenu(false)">X</button>
+                </div>
+                <nav>
+                    <ul>
+                        <li *ngFor="let link of routing; let i = index;">
+                            <a routerLinkActive="active" [routerLink]="link.Router" *ngIf="i != 3" (click)="clickMenu(false,link.LogOut)"> <i [class]="link.IconClass"></i> {{link.Descricao}}</a>
+                            <button type="button" *ngIf="i == 3" (click)="authService.logout(1)"> <i [class]="link.IconClass"></i> {{link.Descricao}}</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+        <div class="exit">
+            <button type="button" (click)="authService.logout(1)"><i class="fa fa-sign-out"></i> Sair</button>
+        </div>
+    </div>
+</header>
+<section class="routes">
+    <router-outlet></router-outlet>
+</section>

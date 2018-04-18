@@ -8,21 +8,21 @@ import 'rxjs/Rx';
 @Injectable()
 export class ApiService {
 
-  constructor(private http: Http) { 
-    
+  constructor(private http: Http) {
+
   }
 
-  public mapUrl(url: string) : string {
+  private mapUrl(url: string): string {
 
-    if(!url.startsWith('/')) {
+    if (!url.startsWith('/')) {
       url = '/' + url;
     }
 
-    var prodUrl = window.location.protocol + '//' + window.location.host;
-    var devUrl = 'http://localhost:5000';
-    var apiUrl = '';
+    let prodUrl = window.location.protocol + '//' + window.location.host;
+    let devUrl = 'http://localhost:62511';
+    let apiUrl = '';
 
-    if(environment.production) {
+    if (environment.production) {
       apiUrl = prodUrl;
     } else {
       apiUrl = devUrl;
@@ -32,55 +32,58 @@ export class ApiService {
     return url;
   }
 
-  lancarError(erro) {
-    throw erro;
- }
 
-  async chamarApi(api:string, postData:Object){
-    
-    var access_token = localStorage.getItem('access_token');
-    var token_terminal = localStorage.getItem('terminal_id');
+  async chamarApi(api: string, postData: Object, fmtJson: boolean = false) {
 
-    var options:RequestOptionsArgs = { 
+    let access_token = localStorage.getItem('access_token');
+    let token_terminal = localStorage.getItem('terminal_id');
+
+    let options: RequestOptionsArgs = {
       url: this.mapUrl(api),
       headers: new Headers({
         'access_token': access_token,
         'terminal_id': token_terminal,
-        //'Origin': location.protocol + '//' + location.host,
       })
     };
 
-    if(postData) {
+    if (postData) {
       options.method = 'POST';
       options.body = postData;
 
-      let response;
+      try {
+        const response:any = await this.http.post(this.mapUrl(api), postData, options).toPromise();
 
-      try{
-       response = await this.http.post(this.mapUrl(api), postData, options).toPromise();
+        if (fmtJson) 
+          return JSON.parse(response._body);
+        else
+          return response;
 
-       return response;
-       
-      }catch(e){
-        this.lancarError(e);
+      } catch (e) {
+        return { sucesso:false , mensagem: 'Erro no servidor.'};
       }
-      return response;
+
     } else {
       options.method = 'GET';
-      let response;
 
-      try{
-        response = await this.http.get(this.mapUrl(api), options).toPromise();
-      }catch(e){
-        this.lancarError(e);
+      try {
+        const response:any = await this.http.get(this.mapUrl(api), options).toPromise();
+        if (fmtJson) 
+          return JSON.parse(response._body);
+        else
+          return response;
+      } catch (e) {
+        return { sucesso: false , mensagem: 'Erro no servidor.'};
       }
-      return response;
     }
   }
 
-  async getApi(uri:string){ 
-    const requeste:any = await this.http.get(uri).toPromise();
-    return  JSON.parse(requeste._body); 
+  async getUri(uri: string) {
+    try{
+      const requeste: any = await this.http.get(uri).toPromise();
+      return JSON.parse(requeste._body);
+    }catch(err){
+      return { Sucesso: false, Mensagem: err};
+    } 
   }
 
 }

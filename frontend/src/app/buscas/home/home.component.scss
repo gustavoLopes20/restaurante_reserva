@@ -1,0 +1,9 @@
+.container {
+    width: 80%;
+    min-height: 100px;
+    display: table;
+    margin: 0 auto;
+    @media(max-width: 800px) {
+        margin-top: 20px;
+    }
+}

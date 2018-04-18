@@ -5,24 +5,38 @@
         </div>
     </div>
     <div class="form-login">
-        <form>
+        <form [formGroup]="formulario" (submit)="onSubmit($event)">
             <div class="form-field">
                 <div class="icon-field"><i class="fa fa-user"></i></div>
                 <div class="input-field">
-                    <input type="text" name="user" placeholder="E-mail">
+                    <input type="text" formControlName="email" placeholder="E-mail" [ngClass]="aplicaCss('email')">
                 </div>
             </div>
             <div class="form-field">
                 <div class="icon-field"><i class="fa fa-lock"></i></div>
                 <div class="input-field">
-                    <input type="password" name="pass" placeholder="Senha">
+                    <input type="password" formControlName="senha" placeholder="Senha" [ngClass]="aplicaCss('senha')">
                 </div>
             </div>
-            <div class="form-field">
-                <div class="input-field">
-                    <button mat-button type="button">ACESSAR</button>
+            <div class="normal-field form-field">
+                <div class="bt input-field">
+                    <button mat-button type="submit" [disabled]="!formulario.valid">ACESSAR</button>
+                </div>
+                <div class="load">
+                    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="rodape">
+        <div class="field">
+            <a href="#"><i class="fa fa-question-circle"></i> Esqueceu a Senha?</a>
+        </div>
+        <div class="field">
+            <a [routerLink]="['/Cadastro']"><i class="fa fa-address-card"></i> Cadastro</a>
+        </div>
+    </div>
+    <div class="error">
+        <h3 *ngIf="!response.Sucesso"><i class="fa fa-info-circle"></i> {{response.Mensagem}}</h3>
     </div>
 </div>

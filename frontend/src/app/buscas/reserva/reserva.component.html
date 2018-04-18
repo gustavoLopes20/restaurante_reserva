@@ -1,28 +1,23 @@
 <div class="container-reserva">
-    <div class="col-left">
+    <div class="left col">
         <div class="topo">
             <div class="title">
-                <h2>{{restaurante.Descricao}}</h2>
-            </div>
-            <div class="sub-title">
-                <h4>{{restaurante.Endereco}}</h4>
+                <h2>{{restaurante.RazaoSocial}}</h2>
             </div>
         </div>
-        <div class="body-left">
-            <div class="image"><img [src]="restaurante.ImgSrc" [alt]="restaurante.Descricao"></div>
-            <div class="info">
-
-            </div>
+        <div class="conteudo">
+            <div class="image"><img src="../assets/img/no-image.png" [alt]="restaurante.Descricao"></div>
+            <div class="info"></div>
         </div>
     </div>
-    <div class="col-right">
-        <div class="topo-right">
-            <div class="title-topo">
+    <div class="right col">
+        <div class="topo">
+            <div class="title">
                 <h3>Disponibilidade de Reserva</h3>
             </div>
         </div>
-        <div class="body-right">
-            <div class="container-form">
+        <div class="conteudo">
+            <div class="formGroup">
                 <form>
                     <div class="form-field">
                         <input type="date" name="data">

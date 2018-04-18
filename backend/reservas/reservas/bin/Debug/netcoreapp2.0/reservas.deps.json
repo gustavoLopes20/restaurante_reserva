@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "fb6011eb552a8d8d45727da60acf550303f607ad"
+    "signature": "014f0e5dadd5180dd4a0222bb2d7fc102cd00c14"
   },
   "compilationOptions": {
     "defines": [
@@ -27,7 +27,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
           "MySql.Data": "6.10.6",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "11.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "2.0.1",
           "Pomelo.EntityFrameworkCore.MySql.Design": "1.1.2"
         },
@@ -424,7 +424,7 @@
       "Microsoft.AspNetCore.Authentication.OAuth/2.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.OAuth.dll": {}
@@ -797,7 +797,7 @@
       "Microsoft.AspNetCore.JsonPatch/2.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.4.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
@@ -1055,7 +1055,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0",
           "Microsoft.Extensions.Logging.Console": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.NodeServices.dll": {}
@@ -1360,7 +1360,7 @@
           "Microsoft.Rest.ClientRuntime": "2.3.8",
           "Microsoft.Rest.ClientRuntime.Azure": "3.3.7",
           "NETStandard.Library": "2.0.0",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "11.0.2",
           "System.Net.Http": "4.3.0"
         },
         "runtime": {
@@ -1374,7 +1374,7 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0",
           "NETStandard.Library": "2.0.0",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "11.0.2",
           "System.Collections": "4.3.0",
           "System.Collections.Concurrent": "4.3.0",
           "System.Linq": "4.3.0",
@@ -1823,7 +1823,7 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.0.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.Json.dll": {}
@@ -1878,7 +1878,7 @@
       "Microsoft.Extensions.DependencyModel/2.0.0": {
         "dependencies": {
           "Microsoft.DotNet.PlatformAbstractions": "2.0.0",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "11.0.2",
           "System.Diagnostics.Debug": "4.3.0",
           "System.Dynamic.Runtime": "4.3.0",
           "System.Linq": "4.3.0"
@@ -2086,7 +2086,7 @@
       "Microsoft.Extensions.Logging.EventSource/2.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Logging.EventSource.dll": {}
@@ -2234,7 +2234,7 @@
       "Microsoft.IdentityModel.Tokens/5.1.4": {
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "1.1.4",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "11.0.2",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Tools": "4.3.0",
           "System.Runtime": "4.3.0",
@@ -2271,7 +2271,7 @@
       "Microsoft.Rest.ClientRuntime/2.3.8": {
         "dependencies": {
           "NETStandard.Library": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard1.4/Microsoft.Rest.ClientRuntime.dll": {}
@@ -2284,7 +2284,7 @@
         "dependencies": {
           "Microsoft.Rest.ClientRuntime": "2.3.8",
           "NETStandard.Library": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard1.4/Microsoft.Rest.ClientRuntime.Azure.dll": {}
@@ -2364,7 +2364,7 @@
           "lib/netstandard2.0/MySqlConnector.dll": {}
         }
       },
-      "Newtonsoft.Json/11.0.1": {
+      "Newtonsoft.Json/11.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         },
@@ -2375,7 +2375,7 @@
       "Newtonsoft.Json.Bson/1.0.1": {
         "dependencies": {
           "NETStandard.Library": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
@@ -2418,7 +2418,7 @@
       "Pomelo.JsonObject/1.1.1": {
         "dependencies": {
           "NETStandard.Library": "2.0.0",
-          "Newtonsoft.Json": "11.0.1"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard1.3/Pomelo.JsonObject.dll": {}
@@ -3893,7 +3893,7 @@
         "dependencies": {
           "Microsoft.Data.OData": "5.8.2",
           "NETStandard.Library": "2.0.0",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "11.0.2",
           "System.Spatial": "5.8.2"
         },
         "runtime": {
@@ -5242,12 +5242,12 @@
       "path": "mysqlconnector/0.32.0",
       "hashPath": "mysqlconnector.0.32.0.nupkg.sha512"
     },
-    "Newtonsoft.Json/11.0.1": {
+    "Newtonsoft.Json/11.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pNN4l+J6LlpIvHOeNdXlwxv39NPJ2B5klz+Rd2UQZIx30Squ5oND1Yy3wEAUoKn0GPUj6Yxt9lxlYWQqfZcvKg==",
-      "path": "newtonsoft.json/11.0.1",
-      "hashPath": "newtonsoft.json.11.0.1.nupkg.sha512"
+      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "path": "newtonsoft.json/11.0.2",
+      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
     },
     "Newtonsoft.Json.Bson/1.0.1": {
       "type": "package",

@@ -7,9 +7,10 @@ namespace reservas.CommunicationModels.Access.Response
 {
     public class LoginResponseModel
     {
-        public string Token { get; set; }
-        public string Username { get; set; }
-        public string Redirect { get; set; }
+        public string UserName { get; set; }
+        public bool Sucesso { get; set; } = true;
+        public string Mensagem { get; set; }
+		public string Token {get; set;}
     }
 }
 

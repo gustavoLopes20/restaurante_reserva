@@ -1,15 +1,13 @@
 @import '../../styles/cores.scss';
 .container-search {
+    width: 80%;
     display: table;
     margin: 0 auto;
-    width: 80%;
-    margin-bottom: 50px;
-    position: relative;
-    top: 30px;
     @media(max-width: 800px) {
         width: 95%;
         margin-left: 2.5%;
         margin-right: 2.5%;
+        margin-top: 10px;
     }
     .title-search {
         display: block;
@@ -17,16 +15,41 @@
         float: left;
         height: 35px;
         margin-bottom: 70px;
-        h2,
-        h4 {
-            color: $color-font-1;
-            font-weight: bold;
+        .resultados {
+            display: block;
+            float: left;
+            h2 {
+                color: $color-font-1;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            h4 {
+                color: $color-font-1;
+                font-weight: bold;
+                font-size: 14px;
+            }
         }
     }
     ul {
-        display: table;
+        display: block;
         width: 100%;
         float: left;
+        max-height: 307px;
+        overflow-y: scroll;
+        @media(max-width: 800px) {
+            max-height: 207px;
+        }
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+        &::-webkit-scrollbar-track-piece {
+            width: 8px;
+            background: rgba(184, 184, 184, 0.60);
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #888888;
+            border-radius: 3px;
+        }
         li {
             list-style: none;
             display: block;
