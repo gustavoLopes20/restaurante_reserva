@@ -9,13 +9,13 @@
             <div class="form-field">
                 <div class="icon-field"><i class="fa fa-user"></i></div>
                 <div class="input-field">
-                    <input type="text" formControlName="email" placeholder="E-mail" [ngClass]="aplicaCss('email')">
+                    <input type="text" formControlName="email" placeholder="E-mail">
                 </div>
             </div>
             <div class="form-field">
                 <div class="icon-field"><i class="fa fa-lock"></i></div>
                 <div class="input-field">
-                    <input type="password" formControlName="senha" placeholder="Senha" [ngClass]="aplicaCss('senha')">
+                    <input type="password" formControlName="senha" placeholder="Senha">
                 </div>
             </div>
             <div class="normal-field form-field">
@@ -36,7 +36,8 @@
             <a [routerLink]="['/Cadastro']"><i class="fa fa-address-card"></i> Cadastro</a>
         </div>
     </div>
-    <div class="error">
-        <h3 *ngIf="!response.Sucesso"><i class="fa fa-info-circle"></i> {{response.Mensagem}}</h3>
-    </div>
 </div>
+
+<!-- <div class="outs">
+    <button type="button" (click)="openDialog()">Open Dialog</button>
+</div> -->

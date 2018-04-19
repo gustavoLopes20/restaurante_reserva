@@ -1,30 +1,42 @@
 <header class="cabecalho">
-    <div class="area-1">
+    <div class="container-top">
         <div class="logo">
             <a [routerLink]="['/Buscas']"><span>Reservas <i class="fa fa-cutlery"></i></span></a>
         </div>
-    </div>
-    <div class="area-2">
-        <nav class="menu">
+        <div class="menu">
             <div class="bt-open">
-                <button type="button" (click)="clickMenu(true)"><i class="fa fa-align-justify"></i></button>
+                <button type="button" (click)="onClickMenu(true)"><i class="fa fa-align-justify"></i></button>
             </div>
-            <div [ngClass]="{'lst':true, 'active-lst':click}">
+            <div class="lst" [ngClass]="aplicarCss(1)">
                 <div class="bt-close">
-                    <button type="button" (click)="clickMenu(false)">X</button>
+                    <button type="button" (click)="onClickMenu(false)">X</button>
                 </div>
                 <nav>
                     <ul>
-                        <li *ngFor="let link of routing; let i = index;">
-                            <a routerLinkActive="active" [routerLink]="link.Router" *ngIf="i != 3" (click)="clickMenu(false,link.LogOut)"> <i [class]="link.IconClass"></i> {{link.Descricao}}</a>
-                            <button type="button" *ngIf="i == 3" (click)="authService.logout(1)"> <i [class]="link.IconClass"></i> {{link.Descricao}}</button>
+                        <li>
+                            <a routerLinkActive="active" [routerLink]="['/Admin/Estabelecimentos']" (click)="onClickMenu(false)"><i class="fa fa-building-o" aria-hidden="true"></i> Estabs</a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="active" [routerLink]="['/Admin/Mesas']" (click)="onClickMenu(false)"><i class="fa fa-th-large" aria-hidden="true"></i> Mesas</a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="active" [routerLink]="['/Admin/Config']" (click)="onClickMenu(false)"><i class="fa fa-cog" aria-hidden="true"></i> Config</a>
+                        </li>
+                        <li class="mobile-li">
+                            <a routerLinkActive="active" [routerLink]="['/Admin/Conta']" (click)="onClickMenu(false)"><i class="fa fa-user" aria-hidden="true"></i> Conta</a>
                         </li>
                     </ul>
                 </nav>
             </div>
-        </nav>
-        <div class="exit">
-            <button type="button" (click)="authService.logout(1)"><i class="fa fa-sign-out"></i> Sair</button>
+        </div>
+        <div class="user">
+            <button type="button" class="bt" (click)="onClickBtUser()">{{userSession.UserName}}</button>
+            <nav [ngClass]="aplicarCss(2)">
+                <ul>
+                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Conta</a></li>
+                    <li><button type="button" (click)="authService.logout(1)"><i class="fa fa-sign-out"></i> Sair</button></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </header>

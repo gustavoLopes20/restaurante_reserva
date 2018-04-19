@@ -23,7 +23,7 @@ namespace reservas.Models
 
         public Sessoes()
         {
-            _token = GeradorHash(64);
+            _token = GenerateUniqueRID(true);
         }
 
 

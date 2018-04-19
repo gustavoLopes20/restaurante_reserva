@@ -6,14 +6,20 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ApiService } from './api.service';
 import { SessaoResponseModel, LoginResponseModel } from './Data/dataModel';
+import { DialogService } from './dialog.service';
 
 @Injectable()
 export class AuthService {
   
   private _sessaoUser: BehaviorSubject<SessaoResponseModel> = new BehaviorSubject(new SessaoResponseModel());
   public sessaoUser: Observable<SessaoResponseModel> = this._sessaoUser.asObservable();
+  private abrirNovaJanela:boolean = true;
 
-  constructor(private router: Router, private servidor: ApiService)
+  constructor(
+    private router: Router,
+    private servidor: ApiService,
+    private dialogService:DialogService
+  )
   {
     this.authenticate();
   }
@@ -21,10 +27,16 @@ export class AuthService {
   public logout(option:number = 0) {
     switch(option){
       case 1:
-          if (confirm("Deseja realmente sair?")){
-            localStorage.removeItem('access_token');
-            this.router.navigate(['/Login']);
-          }
+        if(this.abrirNovaJanela){
+          this.abrirNovaJanela = false;
+          this.dialogService.confirm("Mensagem","Deseja realmente sair?").subscribe(confirm =>{
+            if (confirm){
+              localStorage.removeItem('access_token');
+              this.router.navigate(['/Login']);
+            }else
+              this.abrirNovaJanela = true;
+          });
+        }
       break;
       default:
         localStorage.removeItem('access_token');

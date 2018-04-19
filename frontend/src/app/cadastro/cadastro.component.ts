@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { IResponse, DefaultResponseModel } from '../Data/dataModel';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -14,12 +15,12 @@ export class CadastroComponent implements OnInit {
 
   public formulario:FormGroup;
   public loading: boolean = false;
-  public response: IResponse = { Sucesso: true, Mensagem: ''};
 
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    public dialogService:DialogService
   ) { }
 
   ngOnInit() {
@@ -39,14 +40,16 @@ export class CadastroComponent implements OnInit {
     let response:DefaultResponseModel = await this.apiService.chamarApi('api/acesso/cadastro', this.formulario.value, true);
 
     if (response.Sucesso) {
-      this.response.Sucesso = true;
-      this.router.navigate(['/Login']);
-      this.formulario.reset();    
-    } else {
-      this.response.Sucesso = false;
-      this.response.Mensagem = response.Mensagem;
-      console.error("Erro:",response.Mensagem);   
-    }
+      this.dialogService.confirm("Mensagem",response.Mensagem+" Deseja fazer login?").subscribe(confim =>{
+          if(confim)
+            this.router.navigate(['/Login']);
+
+          this.formulario.reset();   
+      });
+    } else{
+      console.error("Erro:",response.Mensagem);
+      this.dialogService.confirm("Erro!",response.Mensagem, false);
+    }    
     this.loading = false;
   }
 

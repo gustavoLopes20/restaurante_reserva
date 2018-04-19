@@ -30,7 +30,7 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
 //rotas protegidas
 const rotas: Routes = [
   { path: 'Admin', component: AdminEmpresaComponent, canActivate: [AuthGuardService], canActivateChild: [AuthGuardService], children: [
-    { path: '', component: EstabelecimentosComponent, pathMatch: "full" },
+    // { path: '', component: EstabelecimentosComponent, pathMatch: "full" },
     { path: 'Mesas', component: MesasComponent },
     { path: 'Estabelecimentos', component: EstabelecimentosComponent  },
     { path: 'Config', component: ConfiguracoesComponent },

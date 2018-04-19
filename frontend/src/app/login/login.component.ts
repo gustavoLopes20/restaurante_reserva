@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { LoginResponseModel, DefaultResponseModel, IResponse } from '../Data/dataModel';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +14,21 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   public loading: boolean = false;
-
-  public response: IResponse = { Sucesso: true, Mensagem: ''};
-
   public formulario: FormGroup;
 
   constructor(
     private router: Router,
     private apiService: ApiService,
     private servidor: ApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialogService:DialogService
   ) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       senha: [null, [Validators.required, Validators.minLength(8)]],
-    });
+    }); 
   }
 
   async onSubmit(event: Event) {
@@ -40,15 +39,19 @@ export class LoginComponent implements OnInit {
 
     if (response.Sucesso) {
       localStorage.setItem("access_token", response.Token);
-      this.response.Sucesso = true;
       this.router.navigate(['/Admin']);
       this.formulario.reset();
+      this.loading = false;
     } else {
-      this.response.Sucesso = false;
-      this.response.Mensagem = response.Mensagem;
-      console.error("Erro ->", this.response.Mensagem);
+      this.dialogService.confirm("Erro!",response.Mensagem+" Deseja limpar o formulário?").subscribe(res =>{
+        if(res)
+          this.formulario.reset();
+
+        this.loading = false;  
+      });
+      console.error("Erro ->", response.Mensagem);
     }
-    this.loading = false;
+    
   }
 
   private varificaValidTouched(campo: string) {

@@ -12,9 +12,11 @@ import { SessaoResponseModel } from '../Data/dataModel';
 export class AdminEmpresaComponent implements OnInit {
 
   public userSession: SessaoResponseModel = new SessaoResponseModel();
-  public click: boolean = false;
   public routing: Array<any> = [];
   public autenticado: boolean = false;
+
+  private clickMenu: boolean = false;
+  private clickBtUser:boolean = false;
 
   constructor(
     private dataService:DataService,
@@ -37,8 +39,26 @@ export class AdminEmpresaComponent implements OnInit {
     ];
   }
 
-  clickMenu(op: boolean) {
-    this.click = op;
+  onClickMenu(option:boolean) {
+    this.clickMenu = option;
   }
+
+  onClickBtUser(){
+    this.clickBtUser = !this.clickBtUser ? true : false;
+  }
+  aplicarCss(option:number){
+    switch(option){
+      case 1:
+        return {
+          'active-lst': this.clickMenu
+        }
+      case 2:
+        return {
+          'active-nav': this.clickBtUser
+        } 
+    }
+  }
+
+
 
 }

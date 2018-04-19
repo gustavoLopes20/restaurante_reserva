@@ -6,8 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 //angular material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material';
-import { MatProgressBarModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 import 'hammerjs';
 
 //services
@@ -27,6 +28,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { DialogService } from './dialog.service';
 
 const rotas: Routes = [
   //{ path: '', component: HomeComponent, pathMatch: "full" },
@@ -39,6 +42,7 @@ const rotas: Routes = [
     AppComponent,
     LoginComponent,
     CadastroComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,11 +52,25 @@ const rotas: Routes = [
     BuscasModule,
     AdminEmpresaModule,
     AdminUserModule,
-    BrowserAnimationsModule, MatButtonModule,
-    RouterModule.forRoot(rotas), MatProgressBarModule,
-    AngularFontAwesomeModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatProgressBarModule,
+    RouterModule.forRoot(rotas),
+    AngularFontAwesomeModule,    
   ],
-  providers: [ApiService, AuthService, LocalizacaoService],
+  exports: [
+    DialogComponent,
+  ],
+  entryComponents: [
+    DialogComponent,
+  ],
+  providers: [
+    ApiService,
+    AuthService,
+    LocalizacaoService,
+    DialogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
