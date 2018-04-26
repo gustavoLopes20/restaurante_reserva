@@ -1,4 +1,4 @@
-<div class="container-dialog" (keydown)="onKeyDown($event)">
+<div class="container-dialog" (keypress)="onKeyPress($event.keyCode)">
     <div class="box">
         <div class="head-dialog">
             <h3>{{title}}</h3>
@@ -9,11 +9,11 @@
     </div>
     <div class="footer-dialog">
         <div class="bts">
-            <button type="button" *ngIf="btCancel">
+            <button type="button" *ngIf="btCancel" (click)="onClickBt(false)">
               <span>CANCEL</span>
               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ5SURBVGhD7dlJyE1hHMfxa8yYqZCFREpCmTY2UjJFVoZY2MgQvVJSIlnYidhIGUsUSqSUsJaNBYkskVLmzPP3e5ynbrd707k857zx/OrTe85z7nM6/zPd57lvLSUlJeWfTQ8MKtEA/LV0wTrcwY8KvMcFTELbsYiTCDv9jBcleoX6guairayBO3mOZeiFsjMch+FxPIO3XOHchjtYnq1VF++M6/BYNthQJN3xDV/Q24aKYwEWciRbKxDfGHb0Pu0MWQGP51S2ViCpkEhJhaRCIiUV8l8W0gfjYJ/GOGIei9HwS7ZZHIYM+7XYMlELGYyLcATgZx1UHkVPmPl4ArfJ5YUIWYzHCNvvYjqaJWohFuFnLmEzbuTre+EA8zVeYhXW41O+3g1j8AFfcQinYd8HaJZohQyE2x8i3DJeIcdmDsFHwe0WsxVTMAOz4dhtC9x+HCGOo86i2Qg3WiHT4PZWLPRcQ9sjrIU5CNs2ZWu/T7RCJsPt9+BZbhSu0lTsxi18z9m2B/bfjpD6K9aYaIX4QDvh+oiZNpBZuIpj8EH3FruMUJRTVve5AEvzZafQQzEBvjTsE14W9Yn6sDtrdArq597kf32gF6EvfAvZZsFP8+X76IeuuJm3BV6t1WiWqIWYkdgBX7vbMB4hHrATIp8H30wd6I8Qt/uMnMABhCvbLNELKSupkFRIpKRCUiGRkgrxi8uOfmN3hqxEW4WYt7DziGyt2uyCx7IvWyuY87Czv4b7Q3JV8USGsdocG4pmIt7BHVyD//BZUiIHpTsRiriCtk+o/1xxaO2OquSJHII/irO9jXBa6lS0LGewH/NQ5a2dkpKSktIqtdpPusJoJ/aiXPAAAAAASUVORK5CYII=">
             </button>
-            <button type="button">
+            <button type="button" (click)="onClickBt(true)">
               <span>OK</span>
               <img class="menor"src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJZSURBVGhD7ZrL6w1RAMev9zMrC0oWXjtljUKxIEqKhQX+ASsWip0dKTbCUj8Lj43nxpoSG5aylWTDwlvx+cxtCt35mTlzzswp86lPzTlz55zz7c6598xjNPCfMAuP4nP8hj8j+Q6v4mpMzhy8j5MGEssPuBGTcgrt7A3uw4UYi3V4HW3/NcZs+w9m4lu0o21WJMDT9gnax2ErUrAS7cAwKTmG9nO+KCVgPdrBi6KUjoNoPxeLUgKGIA0ZgtRlCNKQIUhdQoMsxdnjzVpkGWQVfsJLRakeWQbZjB5zryjVYwhSl+yCuMJcgZ6/TdyJWQTxl+MklkvxUK9hXaIH8Vu4g+VgDPMsQEMsw7pED+I1tju9sttqRUdED+J57c69Rak7ogfxbscPTHYdXEH0IO54P97slGyCLMcl480gsgiyB7/g46IUxhbsNchu/Ioed9qKQA6gbTT574kWZBeWIbwlMwNDuYK2c6Io1SNKEJchsUKsxc/or+UaK2rSOoghnBOxQrzEygFNQ6sgv4dwcu/A7QE6Jy6jF1O29Qib/ncFB1mAZYhYfkcDzcemBAfxFLqN5SBe4cNAp9CJ3WRO/E2rU2sulmF84LIB+6L1ZDfMXew7TOsgkkOYKEHEMOXjtT7CRAsihnmAHvfUig6JGkTm4TlM9gisguhB+uKfQT5im2VHVxzCyiBOWne6BsqdM+hYJ14++EaBO2+gt4ZyxRuBTgHHOvGlAZcM5Qd8jn0c92ek8+Is+taDY7yJlZjQNwr8YM7ewsU4LYvwCF5AV6c56ZzYhAOZMxr9AvU9sEOv3d9XAAAAAElFTkSuQmCC">
             </button>

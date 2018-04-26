@@ -1,0 +1,98 @@
+<div class="container">
+
+    <div class="formulario">
+
+        <div class="topo">
+            <div class="bts">
+                <button mat-button type="button" class="new" (click)="newItem()"> <i class="fa fa-plus"></i> Novo</button>
+                <button mat-button type="submit" class="save" (click)="saveItem()" form="form01"> <i class="fa fa-floppy-o"></i> Salvar</button>
+                <button mat-button type="button" class="del" (click)="delItem()"> <i class="fa fa-times"></i> Excluir</button>
+                <button *ngIf="btClearFormActive" mat-button type="button" class="clear" (click)="resetItem()"> <i class="fa fa-repeat"></i> Limpar</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="load">
+                <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            </div>
+            <form [formGroup]="formulario" id="form01">
+                <div class="form-field">
+                    <label>Nome Fantasia:</label>
+                    <input type="text" formControlName="nomeFantasia">
+                </div>
+                <div class="form-field">
+                    <label>Razão Social:</label>
+                    <input type="text" formControlName="razaoSocial">
+                </div>
+                <div class="form-field">
+                    <label>CNPJ:</label>
+                    <input type="text" formControlName="cnpj" maxlength="18" (keyup)="onKeyUpFormatDoc($event.target.value)">
+                </div>
+                <div class="form-field">
+                    <label>Cod. Empresa:</label>
+                    <input type="text" formControlName="codEmpresa">
+                </div>
+                <div class="form-field">
+                    <label>Cep:</label>
+                    <input type="text" formControlName="cep" maxlength="9" (keyup)="buscaCep($event.target.value)">
+                </div>
+                <div class="form-field">
+                    <label>Logradouro:</label>
+                    <input type="text" formControlName="rua">
+                </div>
+                <div class="form-field">
+                    <label>Número:</label>
+                    <input type="number" formControlName="num">
+                </div>
+                <div class="form-field">
+                    <label>Bairro:</label>
+                    <input type="text" formControlName="bairro">
+                </div>
+                <div class="form-field">
+                    <label>Complemento:</label>
+                    <input type="text" formControlName="complemento">
+                </div>
+                <div class="form-field">
+                    <label>Estado:</label>
+                    <select formControlName="estado" (change)="onChangeCidades($event.target.value)"> 
+                      <option *ngFor="let estado of lstEstados" [value]="estado.RID">{{estado.Nome}}</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                    <label>Cidade:</label>
+                    <select formControlName="cidade"> 
+                      <option *ngFor="let cidade of lstCidades" [value]="cidade.RID">{{cidade.Nome}}</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                    <label>E-mail:</label>
+                    <input type="text" formControlName="email">
+                </div>
+                <div class="form-field">
+                    <label>Telefone:</label>
+                    <input type="text" formControlName="telefone" maxlength="16" (keyup)="onKeyUpFormatTell($event.target.value)">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let col of displayedColumns">{{col}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataSource" (click)="editItem(item)">
+                    <td>{{item.RazaoSocial}}</td>
+                    <td>{{item.Cnpj}}</td>
+                    <td>{{item.Cidade}}</td>
+                    <td>{{item.Estado}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,9 +1,9 @@
 import { Injectable} from '@angular/core';
-import { Busca } from '../Data/dataModel';
+import { Busca } from '../data/dataModels';
 
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { DataService } from '../Data/data.service';
+import { DataService } from '../services/data.service';
 
 @Injectable()
 export class BuscasService {

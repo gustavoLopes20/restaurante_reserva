@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
-import { IResponse, DefaultResponseModel } from '../Data/dataModel';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { DialogService } from '../dialog.service';
+import { DialogService } from '../services/dialog.service';
+import { DefaultResponseModel } from '../data/dataModels';
 
 @Component({
   selector: 'app-cadastro',
@@ -40,17 +40,20 @@ export class CadastroComponent implements OnInit {
     let response:DefaultResponseModel = await this.apiService.chamarApi('api/acesso/cadastro', this.formulario.value, true);
 
     if (response.Sucesso) {
-      this.dialogService.confirm("Mensagem",response.Mensagem+" Deseja fazer login?").subscribe(confim =>{
-          if(confim)
-            this.router.navigate(['/Login']);
-
-          this.formulario.reset();   
+      this.dialogService.confirm("Mensagem",response.Mensagem, false).subscribe(() =>{
+        this.router.navigate(['/Login']);
+        this.formulario.reset();   
       });
     } else{
       console.error("Erro:",response.Mensagem);
       this.dialogService.confirm("Erro!",response.Mensagem, false);
     }    
     this.loading = false;
+  }
+
+  aplicarLowerCase(str:string){
+    str = str.toLowerCase();
+    this.formulario.patchValue({ email: str});
   }
 
 }

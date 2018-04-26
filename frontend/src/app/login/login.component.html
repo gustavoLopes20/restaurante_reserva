@@ -9,7 +9,7 @@
             <div class="form-field">
                 <div class="icon-field"><i class="fa fa-user"></i></div>
                 <div class="input-field">
-                    <input type="text" formControlName="email" placeholder="E-mail">
+                    <input type="text" formControlName="email" placeholder="E-mail" (keyup)="aplicarLowerCase($event.target.value)">
                 </div>
             </div>
             <div class="form-field">

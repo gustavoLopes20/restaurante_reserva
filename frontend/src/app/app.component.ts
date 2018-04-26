@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiService } from './api.service';
-import { AppDataObject, Teste } from './Data/dataModel';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +11,8 @@ export class AppComponent {
   constructor() { }
 
   ngOnInit() {
-  }
+    // let permissoes:Array<Permissao> = await this.servidor.getUri("assets/Data/configPermissoes.json");
+    // let components:Array<Component> = await this.servidor.getUri("assets/Data/configComponents.json");
+  } 
 
 }

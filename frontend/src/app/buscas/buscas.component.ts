@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalizacaoService } from '../localizacao.service';
-import { AuthService } from '../auth.service';
-import { SessaoResponseModel, CidadeBr } from '../Data/dataModel';
-import { DataService } from '../Data/data.service';
-import { Empresa, Busca } from '../Data/dataModel';
+import { AuthService } from '../services/auth.service';
 import { BuscasService } from './buscas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CidadeBr, Empresa, SessaoUsuario } from '../data/dataModels';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-buscas',
@@ -26,20 +24,19 @@ export class BuscasComponent implements OnInit {
   public clickLst: boolean = false;
   private _localAtualRID:string = '';
 
-  public userOnline: SessaoResponseModel = new SessaoResponseModel();
+  public sessionUser: SessaoUsuario = new SessaoUsuario();
   public formulario: FormGroup;
 
   constructor(
     private dataService: DataService,
     private authService: AuthService,
     private router: Router,
-    private localService: LocalizacaoService,
     private formBuilder: FormBuilder
   ) {
-    this.dataService.carregarEmpresas(1);
+
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.formulario = this.formBuilder.group({
       StrRestaurante: [null],
       LocalName: [null, Validators.required ],
@@ -49,19 +46,11 @@ export class BuscasComponent implements OnInit {
     });
     //this.router.navigate(['/Buscas/Home']);
 
-    this.dataService.cidadesBr.subscribe(cidades => {
-      this._lstCidades = cidades;
-    });
-    
-    this.dataService.lstRestaurantes.subscribe(restaurantes => {
-      this._lstRestaurantes = restaurantes;
-    });
+    this._lstCidades = await this.dataService.getCidadesBr();
+    this._lstRestaurantes = await this.dataService.getEmpresas(1);
 
     // recebendo dados de sessao do usuario
-    this.authService.sessaoUser.subscribe(session => {
-      this.userOnline = session;
-    });
-
+    this.sessionUser = await this.authService.authenticate();
   }
 
   //click busca avancanda
@@ -78,7 +67,7 @@ export class BuscasComponent implements OnInit {
         this.router.navigate(['/Login/']);
       break;
       case 2:
-        this.router.navigate(['/Admin/']);
+        this.router.navigate(['/AdminEmpresa/']);
       break;
     }
   }

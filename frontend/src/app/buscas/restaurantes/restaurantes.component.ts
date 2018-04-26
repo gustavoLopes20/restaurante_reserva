@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../../Data/data.service';
-import { CidadeBr, Busca, Empresa, IResponse } from '../../Data/dataModel';
 import { BuscasService } from '../buscas.service';
-import { LocalizacaoService } from '../../localizacao.service';
+import { CidadeBr, Empresa, IResponse } from '../../data/dataModels';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-restaurantes',
@@ -21,48 +20,41 @@ export class RestaurantesComponent implements OnInit {
   constructor(
     private activatedRouter: ActivatedRoute,
     private dataService: DataService,
-    private buscasService: BuscasService,
-    private localService: LocalizacaoService
+    private buscasService: BuscasService
   ) {
   }
 
   ngOnInit() {
-    this.activatedRouter.queryParams.subscribe(params => {
+    this.activatedRouter.queryParams.subscribe(async params => {
 
-      this.dataService.cidadesBr.subscribe(cidades => {
+      let cidades:CidadeBr[] = await this.dataService.getCidadesBr();
+      let city: CidadeBr = cidades.find(a => a.RID == params.cidade);
 
-        let city: CidadeBr = cidades.find(a => a.RID == params.cidade);
-        if (city) {
+      if(city){
+        this.cidadeAtual = city;
+        this.encontrado = { Sucesso: true, Mensagem: '' };
+        this._lstRestaurantes = await this.dataService.getEmpresas(1);
 
-          this.cidadeAtual = city;
-          this.encontrado = { Sucesso: true, Mensagem: '' };
-          this.dataService.lstRestaurantes.subscribe(restaurantes =>{
-
-            this._lstRestaurantes = this.filtrarEmpresas(city.Nome, restaurantes);
-
-            if(params.restaurante){ //filtrando por nome de restaurante
-              let lst:Array<Empresa> = this.dataService.filtrarData(1, params.restaurante, this._lstRestaurantes);
-              if(lst.length){
-                this.encontrado = { Sucesso: true, Mensagem: '' };
-                this.lstRestaurantes = lst;
-              }else{
-                this.encontrado = { Sucesso: false, Mensagem: 'Nenhum restaurante encontrado.' };
-                this.lstRestaurantes = [];
-              }
-            }else{//filtrando por cidade
-              let lst:Array<Empresa> = this._lstRestaurantes.slice(0);
-              if(lst.length){
-                this.encontrado = { Sucesso: true, Mensagem: '' };
-                this.lstRestaurantes = lst;
-              }else{
-                this.encontrado = { Sucesso: false, Mensagem: 'Nenhum restaurante encontrado.' };
-                this.lstRestaurantes = [];
-              }
-            } 
-                                         
-          });
+        if(params.restaurante){ //filtrando por nome de restaurante
+          let lst:Array<Empresa> = this.dataService.filtrarData(1, params.restaurante, this._lstRestaurantes);
+          if(lst.length){
+            this.encontrado = { Sucesso: true, Mensagem: '' };
+            this.lstRestaurantes = lst;
+          }else{
+            this.encontrado = { Sucesso: false, Mensagem: 'Nenhum restaurante encontrado.' };
+            this.lstRestaurantes = [];
+          }
+        }else{//filtrando por cidade
+          let lst:Array<Empresa> = this._lstRestaurantes.slice(0);
+          if(lst.length){
+            this.encontrado = { Sucesso: true, Mensagem: '' };
+            this.lstRestaurantes = lst;
+          }else{
+            this.encontrado = { Sucesso: false, Mensagem: 'Nenhum restaurante encontrado.' };
+            this.lstRestaurantes = [];
+          }
         }
-      });
+      }
     });
   }
 

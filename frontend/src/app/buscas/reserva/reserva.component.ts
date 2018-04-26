@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Empresa } from '../../Data/dataModel';
-import { DataService } from '../../Data/data.service';
+import { Empresa } from '../../data/dataModels';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-reserva',
@@ -19,19 +19,17 @@ export class ReservaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.router.params.subscribe(params => {
+    this.router.params.subscribe(async params => {
       let rid: string = params['RID'];
+      let restaurantes:Empresa[] = await this.dataService.getEmpresas(1);
+      let restaurante:Empresa = restaurantes.find(a => a.RID == rid);
 
-      this.dataService.lstRestaurantes.subscribe(restaurantes =>{
-        let restaurante:Empresa = restaurantes.find(a => a.RID == rid);
-
-        if(restaurante){
-          this.restaurante = restaurante;
-        }else{
-          this.restaurante = new Empresa();
-          //this.routerRedirect.navigate(['/Buscas']);
-        }
-      }); 
+      if(restaurante){
+        this.restaurante = restaurante;
+      }else{
+        this.restaurante = new Empresa();
+        //this.routerRedirect.navigate(['/Buscas']);
+      }
 
     });
   }

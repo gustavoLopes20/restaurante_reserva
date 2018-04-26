@@ -19,8 +19,7 @@ export class DialogComponent implements OnInit {
 
   }
 
-  onKeyDown(event: any) {
-    let tecla:number = event.keyCode;
+  onKeyPress(tecla:number) {
     if (tecla == 13)
       this.dialogRef.close(true);
   }

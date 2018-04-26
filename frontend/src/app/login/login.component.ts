@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { AuthService } from '../auth.service';
-import { LoginResponseModel, DefaultResponseModel, IResponse } from '../Data/dataModel';
+import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { DialogService } from '../dialog.service';
+import { DialogService } from '../services/dialog.service';
+import { LoginResponseModel } from '../data/dataModels';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private servidor: ApiService,
     private formBuilder: FormBuilder,
-    private dialogService:DialogService
+    private dialogService:DialogService,
+    private authService:AuthService
   ) { }
 
   ngOnInit() {
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit(event: Event) {
+    
     event.preventDefault();
     this.loading = true;
 
@@ -39,31 +41,35 @@ export class LoginComponent implements OnInit {
 
     if (response.Sucesso) {
       localStorage.setItem("access_token", response.Token);
-      this.router.navigate(['/Admin']);
       this.formulario.reset();
       this.loading = false;
+      this.redirectUser(response.UserNivel);
     } else {
-      this.dialogService.confirm("Erro!",response.Mensagem+" Deseja limpar o formulário?").subscribe(res =>{
-        if(res)
-          this.formulario.reset();
-
-        this.loading = false;  
-      });
+      this.dialogService.confirm("Erro!",response.Mensagem);
+      this.loading = false;  
       console.error("Erro ->", response.Mensagem);
     }
     
   }
 
-  private varificaValidTouched(campo: string) {
-    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
+  aplicarLowerCase(str:string){
+    str = str.toLowerCase();
+    this.formulario.patchValue({ email: str});
   }
-  private varificaValid(campo: string) {
-    return this.formulario.get(campo).valid;
-  }
-  aplicaCss(campo: string) {
-    return {
-      'has-error': this.varificaValidTouched(campo),
-      'has-valid': this.varificaValid(campo),
+
+  redirectUser(userNivel:number){
+    switch(userNivel){
+      case 0:
+        this.router.navigate(['/Usuarios/User']);
+      break;
+      case 1:
+        this.router.navigate(['/Usuarios/Admin']);
+      break;
+      case 2:
+        this.router.navigate(['/Usuarios/Admin']);
+      break;
+      default:
+        this.router.navigate(['/Login']);
     }
   }
 
