@@ -18,7 +18,7 @@ namespace reservas.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime? UltimoLogin { get; set; }
 
-
+        [NotMapped]
         private string _token = null;
 
         public Sessoes()
@@ -40,5 +40,7 @@ namespace reservas.Models
             }
         }
 
+        [NotMapped]
+        public List<Permissoes> PermissoesUsuario { get; set; }
     }
 }

@@ -1,0 +1,46 @@
+[{
+        "Id": 3290,
+        "Descricao": "usuarios",
+        "ComponentPai": 0
+    },
+    {
+        "Id": 6731,
+        "Descricao": "admin",
+        "ComponentPai": 3290
+    },
+    {
+        "Id": 6908,
+        "Descricao": "empresa",
+        "ComponentPai": 6731
+    },
+    {
+        "Id": 3233,
+        "Descricao": "mesas",
+        "ComponentPai": 6731
+    },
+    {
+        "Id": 2219,
+        "Descricao": "reservas",
+        "ComponentPai": 6731
+    },
+    {
+        "Id": 1058,
+        "Descricao": "perfil",
+        "ComponentPai": 6731
+    },
+    {
+        "Id": 4486,
+        "Descricao": "user",
+        "ComponentPai": 3290
+    },
+    {
+        "Id": 1456,
+        "Descricao": "perfil-user",
+        "ComponentPai": 4486
+    },
+    {
+        "Id": 7645,
+        "Descricao": "reservas-user",
+        "ComponentPai": 4486
+    }
+]

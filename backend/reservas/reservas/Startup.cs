@@ -39,6 +39,7 @@ namespace reservas
                 options.UseMySql(connection)
             );
 
+         
             // Add framework services. AllowSpecificOrigin
             services.AddCors(options =>
             {
@@ -89,7 +90,6 @@ namespace reservas
    
             //app.UseCors("AllowAllHeaders");
             app.UseMvc();
-           
         }
     }
 }

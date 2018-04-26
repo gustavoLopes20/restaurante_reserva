@@ -23,10 +23,8 @@ namespace reservas.Models
 
         [MaxLength(256)]
         public string TokenCmfEmail { get; set; }
-
-
-        [MaxLength(64)]
-        public string PessoaRID { get; set; }
+		
+		public int Nivel { get; set; } = 0; //(0 - usuário comum / 1 - Administrador / 2 - Desenvolvedor / 3 - Administrador e Desenvolvedor)
 
         public long PessoaId { get; set; }
 

@@ -30,18 +30,27 @@ namespace reservas.Controllers
             return context.ReservasMesas.FirstOrDefault(a => a.RID == rid);
         }
 
-        // POST api/Mesas
+        // POST api/ReservasMesas
         [HttpPost]
         public DefaultResponseModel Salvar([FromBody] ReservasMesas Model)
         {
-            context.ReservasMesas.Update(Model);
-            context.SaveChanges();
+            if (Autenticou) // verificar se autenticou -- em seguida sera verificar as permissoes
+            {
+                context.ReservasMesas.Update(Model);
+                context.SaveChanges();
+
+                return new DefaultResponseModel
+                {
+                    Mensagem = "Salvo com sucesso!"
+                };
+
+            }
 
             return new DefaultResponseModel
             {
-                Mensagem = "Salvo com sucesso!"
+                Mensagem = "Erro ao salvar!",
+                Sucesso = false
             };
-
         }
 
         //DELETE  api/ReservasMesas/Delete
@@ -49,12 +58,22 @@ namespace reservas.Controllers
         [Route("Delete")]
         public DefaultResponseModel Delete([FromBody] ReservasMesas Model)
         {
-            context.ReservasMesas.Remove(Model);
-            context.SaveChanges();
+            if (Autenticou)
+            {
 
+                context.ReservasMesas.Remove(Model);
+                context.SaveChanges();
+
+                return new DefaultResponseModel
+                {
+                    Mensagem = "Excluido com sucesso!"
+                };
+
+            }
+   
             return new DefaultResponseModel
             {
-                Mensagem = "Excluido com sucesso!"
+                Mensagem = "Erro ao excluir!"
             };
         }
     }

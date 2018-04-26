@@ -26,40 +26,41 @@ namespace reservas.WebCore
         {
 
             modelBuilder.Entity<Mesas>()
-             .HasAlternateKey(c => c.RID)
-             .HasName("RID");
+                 .HasAlternateKey(c => c.RID)
+                 .HasName("RID");
 
             modelBuilder.Entity<ReservasMesas>()
-             .HasAlternateKey(c => c.RID)
-             .HasName("RID");
+                 .HasAlternateKey(c => c.RID)
+                 .HasName("RID");
 
             modelBuilder.Entity<Empresas>()
-             .HasAlternateKey(c => c.RID)
-             .HasName("RID");
+                 .HasAlternateKey(c => c.RID)
+                 .HasName("RID");
 
             modelBuilder.Entity<Usuarios>()
-             .HasAlternateKey(c => c.RID)
-             .HasName("RID");
+                 .HasAlternateKey(c => c.RID)
+                 .HasName("RID");
 
             modelBuilder.Entity<Sessoes>()
              .HasAlternateKey(c => c.RID)
              .HasName("RID");
 
             modelBuilder.Entity<AvaliacoesEmpresas>()
-             .HasAlternateKey(c => c.RID)
-             .HasName("RID");
+                 .HasAlternateKey(c => c.RID)
+                 .HasName("RID");
 
             modelBuilder.Entity<Pessoas>()
              .HasAlternateKey(c => c.RID)
              .HasName("RID");
 
             modelBuilder.Entity<Permissoes>()
-             .HasAlternateKey(c => c.RID)
-             .HasName("RID");
+                .HasAlternateKey(c => c.RID)
+                .HasName("RID");
+
 
             modelBuilder.Entity<InfosEmpresas>()
-             .HasAlternateKey(c => c.RID)
-             .HasName("RID");
+                 .HasAlternateKey(c => c.RID)
+                 .HasName("RID");
         }
     }
 }

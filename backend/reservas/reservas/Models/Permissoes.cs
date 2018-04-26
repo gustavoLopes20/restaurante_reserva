@@ -16,10 +16,11 @@ namespace reservas.Models
         [ForeignKey("UsuarioId")]
         public Usuarios Usuario { get; set; }
 
-        public int Component { get; set; }
-
-        public int Tela { get; set; }
-
-        public int Permissao { get; set; }
+        public int Component {get; set;}
+        public bool Consultar { get; set; } = true;
+        public bool Incluir { get; set; } = true;
+        public bool Editar { get; set; } = true;
+        public bool Excluir { get; set; } = false;
     }
 }
+//public int Permissao {get; set;} // (1 - Consultar / 2 - Incluir / 3 - Editar / 4 - Excluir)

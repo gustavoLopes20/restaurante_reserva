@@ -28,20 +28,20 @@ namespace reservas.Controllers
             var rgx = new Regex("[^a-zA-Z -]");
             var rgx2 = new Regex("[^0-9A-Z -]");
 
-            cidade = rgx.Replace(cidade, " ");
-            user = rgx2.Replace(user, "");
-            
             if (cidade != "")
-            {
+            {   cidade = rgx.Replace(cidade, " ");
+
                 return context.Empresas.Where(e => e.Cidade.ToUpper() == cidade.ToUpper()).ToList();
 
-            }else if(user != "")
+            }else if(user != "" && Autenticou)
             {
-                return context.Empresas.Include(a => a.Usuario).Where(a => a.Usuario.RID == user).ToList();
+                user = rgx2.Replace(user, "");
+                return context.Empresas.Where(a => a.Usuario.RID == user).ToList();
             }
             else
             {
-                return context.Empresas.ToList();
+                //HttpContext.Response.StatusCode = 404;
+                return null;
             }
         }
 
@@ -56,14 +56,32 @@ namespace reservas.Controllers
         [HttpPost]
         public DefaultResponseModel Salvar([FromBody] Empresas Model)
         {
-            context.Empresas.Update(Model);
-            context.SaveChanges();
-
-            return new DefaultResponseModel
+            try
             {
-                Mensagem = "Salvo com sucesso!"
-            };
+                if (Autenticou)
+                {
+                    context.Empresas.Update(Model);
+                    context.SaveChanges();
 
+                    return new DefaultResponseModel
+                    {
+                        Mensagem = "Salvo com sucesso!"
+                    };
+                }
+
+                return new DefaultResponseModel
+                {
+                    Mensagem = "Usuário não autenticado"
+                };
+            }
+            catch (Exception e)
+            {
+                return new DefaultResponseModel
+                {
+                    Mensagem = "Erro no servidor!"+e.Message,
+                    Sucesso = false
+                };
+            }
         }
 
         //DELETE  api/Empresas/Delete
@@ -71,13 +89,33 @@ namespace reservas.Controllers
         [Route("Delete")]
         public DefaultResponseModel Delete([FromBody] Empresas Model)
         {
-            context.Empresas.Remove(Model);
-            context.SaveChanges();
-
-            return new DefaultResponseModel
+            try
             {
-                Mensagem = "Excluido com sucesso!"
-            };
+                if (Autenticou)
+                {
+                    context.Empresas.Remove(Model);
+                    context.SaveChanges();
+
+                    return new DefaultResponseModel
+                    {
+                        Mensagem = "Excluido com sucesso!"
+                    };
+                }
+
+                return new DefaultResponseModel
+                {
+                    Mensagem = "Usuário não autenticado"
+                };
+
+            }
+            catch(Exception e)
+            {
+                return new DefaultResponseModel
+                {
+                    Mensagem = "Erro no servidor!"+e.Message,
+                    Sucesso = false
+                };
+            }
         }
     }
 }

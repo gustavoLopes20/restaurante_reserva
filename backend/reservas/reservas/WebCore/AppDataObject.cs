@@ -43,6 +43,9 @@ namespace reservas.WebCore
                salt *= 10000;
                salt += r.Next(1000000000);
 
+                if (salt < 0)
+                   salt = salt * -1;
+
                var result = new string(
                    Enumerable.Repeat(chars, 24)
                              .Select(s => s[r.Next(s.Length)])

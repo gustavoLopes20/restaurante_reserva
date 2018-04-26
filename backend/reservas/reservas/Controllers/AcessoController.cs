@@ -16,6 +16,7 @@ using reservas.WebCore.Mvc;
 using System.IO;
 using Newtonsoft.Json;
 
+
 namespace reservas.Controllers
 {
     [Route("api/[controller]")]
@@ -36,6 +37,8 @@ namespace reservas.Controllers
             {
                 string senhaCript = CriptSenha(Model.Senha);
 
+                Model.Email = Model.Email.ToLower();
+
                 var existente = context.Usuarios.Any(u => u.Email == Model.Email);
 
                 if (!existente)
@@ -47,7 +50,7 @@ namespace reservas.Controllers
                     };
 
                     context.Pessoas.Add(pessoa);
- 
+
                     var usuario = new Usuarios
                     {
                         Senha = senhaCript,
@@ -57,6 +60,41 @@ namespace reservas.Controllers
                     };
 
                     context.Usuarios.Add(usuario);
+
+                    // component de usuario
+                    var defaultpermission1 = new Permissoes
+                    {
+                        UsuarioId = usuario.Id,
+                        Component = 3290
+                    };
+
+                    // component de usuario comum
+                    var defaultpermission2 = new Permissoes
+                    {
+                        UsuarioId = usuario.Id,
+                        Component = 4486
+                    };
+
+                    // component de perfil
+                    var defaultpermission3 = new Permissoes
+                    {
+                        UsuarioId = usuario.Id,
+                        Component = 1456,
+                        Excluir = true
+                    };
+
+                    // component de reservas
+                    var defaultpermission4 = new Permissoes
+                    {
+                        UsuarioId = usuario.Id,
+                        Component = 7645,
+                        Excluir = true
+                    };
+
+                    context.Permissoes.Add(defaultpermission1);
+                    context.Permissoes.Add(defaultpermission2);
+                    context.Permissoes.Add(defaultpermission3);
+                    context.Permissoes.Add(defaultpermission4);
                     context.SaveChanges();
 
                     var consulta = context.Usuarios.Any(u => u.Id == usuario.Id);
@@ -109,6 +147,8 @@ namespace reservas.Controllers
 
             if (rg.IsMatch(Model.Email))
             {
+                Model.Email = Model.Email.ToLower();
+
                 var user = context.Usuarios.Include(u => u.Pessoa).FirstOrDefault(a => a.Email == Model.Email && a.Senha == senhaCript);
                 
                 if (user != null)
@@ -121,10 +161,12 @@ namespace reservas.Controllers
                     context.Sessoes.Add(sessaousuario);
                     context.SaveChanges();
 
+
                     return new LoginResponseModel
                     {
 						Token = sessaousuario.Token,
                         UserName = sessaousuario.Usuario.Pessoa.Nome,
+                        UserNivel = sessaousuario.Usuario.Nivel,
                         Mensagem = "Login Efetuado com sucesso."
                     };
                 }
@@ -152,48 +194,34 @@ namespace reservas.Controllers
         [Route("[action]")]
         public SessoesResponseModel Sessoes()
         {
-            var header = HttpContext.Request.Headers.ToList();
-            string access_token = header[9].Value;
+             if (Autenticou)
+             {
 
-            if (access_token != "")
-            {
-                var sec = context.Sessoes.Include(a => a.Usuario);
-                var sessao = sec.FirstOrDefault(a => a.Token == access_token);
-             
-                if (sessao != null)
-                {
+                 var lstPermissoes = context.Permissoes.Where(a => a.UsuarioId == SessaoUsuario.UsuarioId).ToList();
 
-                    var lstPermissoes = context.Permissoes.Where(a => a.UsuarioId == sessao.UsuarioId).ToList();
-
-                    return new SessoesResponseModel
-                    {
-                        Token = sessao.Token,
-                        UserName = sessao.Usuario.Login,
-                        UserId = sessao.UsuarioId,
+                  return new SessoesResponseModel
+                  {
+                        Token = SessaoUsuario.Token,
+                        UserName = SessaoUsuario.Usuario.Login,
+                        UserId = SessaoUsuario.UsuarioId,
+                        UserRID = SessaoUsuario.Usuario.RID,
+                        UserNivel = SessaoUsuario.Usuario.Nivel,
                         PermissoesUser = lstPermissoes,
                         Mensagem = "Autenticado com sucesso."
-                    };
-                }
-                else
-                {
-                    return new SessoesResponseModel
-                    {
-                        Sucesso = false,
-                        Mensagem = "Não autenticado."
-                    };
-                }
-            }
-            else
-            {
-
-                return new SessoesResponseModel
-                {
-                    Sucesso = false,
-                    Mensagem = "Token inválido"
-                };
-            }
+                   };
+             }
+             else
+             {
+                 return new SessoesResponseModel
+                 {
+                     Sucesso = false,
+                     Mensagem = "Não autenticado."
+                 };
+             }
+            
         }
 
     }
+
 }
 

@@ -13,6 +13,8 @@ namespace reservas.CommunicationModels.Access.Response
         public bool Sucesso { get; set; } = true;
         public string UserName { get; set; }
         public long UserId { get; set; }
+		public int UserNivel { get; set; }
+        public string UserRID { get; set; }
         public List<Permissoes> PermissoesUser { get; set; }
     }
 }

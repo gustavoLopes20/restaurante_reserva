@@ -4,15 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using reservas.Data;
+using reservas.WebCore;
+using reservas.WebCore.Mvc;
 
 namespace reservas.Models
 {
     public class Reservas : AppDataObject
     {
-        public long RestauranteId { get; set; }
-        [ForeignKey("RestauranteId")]
-        public Restaurantes Restaurante { get; set; }
+        public long EmpresaId { get; set; }
+        [ForeignKey("EmpresaId")]
+        public Empresas Restaurante { get; set; }
 
         public long UsuarioId { get; set; }
         [ForeignKey("UsuarioId")]
