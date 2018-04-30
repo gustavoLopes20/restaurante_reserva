@@ -15,9 +15,7 @@ import { DataService } from '../../../services/data.service';
 })
 export class EmpresaComponent implements OnInit {
 
-  private session: SessaoUsuario;
-  public model: Empresa = new Empresa();
-
+  public model:Empresa;
   public displayedColumns = ['Descricao', 'Cnpj', 'Cidade', 'Estado'];
   public dataSource: Array<Empresa> = [];
 
@@ -26,6 +24,7 @@ export class EmpresaComponent implements OnInit {
   private _lstCidades: Array<CidadeBr> = [];
 
   public loading: boolean = false;
+  public edit: boolean = false;
   public btClearFormActive:boolean = false;
 
   public formulario: FormGroup;
@@ -38,83 +37,50 @@ export class EmpresaComponent implements OnInit {
     private dialogService: DialogService,
     private validaDocumentosService: ValidaDocumentosService
   ) {
-
   }
 
   async ngOnInit() {
     //form config
     this.formulario = this.formBuilder.group({
-      nomeFantasia: [{ value: null, disabled: true }, [Validators.minLength(3)]],
-      razaoSocial: [{ value: null, disabled: true }, [Validators.required, Validators.minLength(3)]],
-      cnpj: [{ value: null, disabled: true }, Validators.required],
-      codEmpresa: [{ value: null, disabled: true }],
-      cep: [{ value: null, disabled: true }, Validators.required],
-      rua: [{ value: null, disabled: true }, Validators.required],
-      num: [{ value: null, disabled: true }, Validators.required],
-      complemento: [{ value: null, disabled: true }],
-      bairro: [{ value: null, disabled: true }, Validators.required],
-      estado: [{ value: null, disabled: true }, Validators.required],
-      cidade: [{ value: null, disabled: true }, Validators.required],
-      email: [{ value: null, disabled: true }],
-      telefone: [{ value: null, disabled: true }, Validators.required],
+      NomeFantasia: [{ value: null, disabled: true }, [Validators.minLength(3)]],
+      RazaoSocial: [{ value: null, disabled: true }, [Validators.required, Validators.minLength(3)]],
+      Cnpj: [{ value: null, disabled: true }, Validators.required],
+      CodEmpresa: [{ value: null, disabled: true }],
+      Cep: [{ value: null, disabled: true }, Validators.required],
+      Rua: [{ value: null, disabled: true }, Validators.required],
+      Num: [{ value: null, disabled: true }, Validators.required],
+      Complemento: [{ value: null, disabled: true }],
+      Bairro: [{ value: null, disabled: true }, Validators.required],
+      Estado: [{ value: null, disabled: true }, Validators.required],
+      Cidade: [{ value: null, disabled: true }, Validators.required],
+      Email: [{ value: null, disabled: true }],
+      Telefone: [{ value: null, disabled: true }, Validators.required],
     });
 
     this.formulario.valueChanges.subscribe(resp=>{
       if(
-        (resp.nomeFantasia != null && resp.nomeFantasia.length) ||
-        (resp.razaoSocial != null && resp.razaoSocial.length) ||
-        (resp.cnpj != null && resp.cnpj.length) ||
-        (resp.codEmpresa != null && resp.codEmpresa.length) ||
-        (resp.cep != null && resp.cep.length) ||
-        (resp.rua != null && resp.cep.rua) ||
-        (resp.num != null) ||
-        (resp.complemento != null && resp.complemento.length) ||
-        (resp.bairro != null && resp.bairro.length) ||
-        (resp.cidade != null && resp.cidade.length) ||
-        (resp.estado != null && resp.estado.length) ||
-        (resp.email != null && resp.email.length) ||
-        (resp.telefone != null && resp.telefone.length)
+        (resp.NomeFantasia != null && resp.NomeFantasia.length) ||
+        (resp.RazaoSocial != null && resp.RazaoSocial.length) ||
+        (resp.Cnpj != null && resp.Cnpj.length) ||
+        (resp.CodEmpresa != null && resp.CodEmpresa.length) ||
+        (resp.Cep != null && resp.Cep.length) ||
+        (resp.Rua != null && resp.Rua.length) ||
+        (resp.Num != null) ||
+        (resp.Complemento != null && resp.Complemento.length) ||
+        (resp.Bairro != null && resp.Bairro.length) ||
+        (resp.Cidade != null && resp.Cidade.length) ||
+        (resp.Estado != null && resp.Estado.length) ||
+        (resp.Email != null && resp.Email.length) ||
+        (resp.Telefone != null && resp.Telefone.length)
       )
         this.btClearFormActive = true;
       else
         this.btClearFormActive = false;
     });
 
-    this.lstEstados = await this.dataService.getEstadosBr();
+    this.lstEstados = await  this.dataService.getEstadosBr();
     this._lstCidades = await this.dataService.getCidadesBr();
-    this.session = await this.authService.authenticate();
-    
-    if(this.session.Sucesso)
-      this.dataSource = await this.dataService.getEmpresas(2, this.session.UserRID);
-
-  }
-
-  setModel(option: number, item?: Empresa) {
-    switch (option) {
-      case 1:
-        this.model.NomeFantasia = this.formulario.get('nomeFantasia').value;
-        this.model.RazaoSocial = this.formulario.get('razaoSocial').value;
-        this.model.CodEmpresa = this.formulario.get('codEmpresa').value;
-        this.model.Cnpj = this.formulario.get('cnpj').value;
-        this.model.Cep = this.formulario.get('cep').value;
-        this.model.Rua = this.formulario.get('rua').value;
-        this.model.Num = Number(this.formulario.get('num').value);
-        this.model.Complemento = this.formulario.get('complemento').value;
-        this.model.Bairro = this.formulario.get('bairro').value;
-        this.model.Estado = this.getEstado(1, this.formulario.get('estado').value);
-        this.model.Cidade = this.getCidade(1, this.formulario.get('cidade').value);
-        this.model.Telefone = this.formulario.get('telefone').value;
-        this.model.Email = this.formulario.get('email').value;
-        this.model.UsuarioId = Number(this.session.UserId);
-        break;
-      case 2:
-        if (item != null)
-          this.model.Id = item.Id;
-      break;
-      case 3:
-        this.model = new Empresa();
-      break;
-    }
+    this.dataSource = await this.dataService.getEmpresas(2);
   }
 
   //event onChange - carregando cidades
@@ -136,44 +102,38 @@ export class EmpresaComponent implements OnInit {
     this.formulario.patchValue({telefone : this.validaDocumentosService.telefoneFMT(value) });
   }
 
-  getCidade(option: number, cidade: string): string {
-    switch (option) {
-      case 1:
-        return this._lstCidades.find(a => a.RID == cidade).Nome;
-      case 2:
-        return this._lstCidades.find(a => a.Nome == cidade).RID;
-    }
-  }
-  getEstado(option: number, estado: string): string {
-    switch (option) {
-      case 1:
-        return this.lstEstados.find(a => a.RID == estado).Sigla;
-      case 2:
-        return this.lstEstados.find(a => a.Sigla == estado).RID;
-    }
-  }
-
-  openDialig(title:string, mensagem:string) {
+  openDialig(title:string, mensagem:string) : void {
     this.dialogService.confirm(title, mensagem, false);
   }
 
-  async saveItem() {
+  async saveItem() : Promise<void> {
     this.loading = true;
-    if (this.formulario.valid) {
-      this.setModel(1);
-      const response: DefaultResponseModel = await this.servidor.chamarApi('api/Empresas', this.model, true);
-      if (response.Sucesso) {
-        this.dialogService.confirm("Mensagem", response.Mensagem, false).subscribe(async () => {
-          this.dataSource = await this.dataService.getEmpresas(2, this.session.UserRID, true);
+    if (this.formulario.valid && this.edit) {
+      
+      let session:SessaoUsuario = await this.authService.authenticate();
+      if(session.Sucesso){
+
+        this.model = this.formulario.value;
+        this.model.UsuarioId = session.UserId;
+        this.model.Cidade = this.dataService.getCidade(1, this.formulario.get('Cidade').value);
+        this.model.Estado = this.dataService.getEstado(1, this.formulario.get('Estado').value);
+
+        const response: DefaultResponseModel = await this.servidor.chamarApi('api/Empresas', this.model);
+
+        if (response.Sucesso) {
+          this.dialogService.confirm("Mensagem", response.Mensagem, false).subscribe(async () => {
+            //this.dataSource = await this.dataService.getEmpresas(2, this.session.UserRID, true);
+            this.loading = false;
+            this.resetItem();
+          });
+        } else {
+          this.dialogService.confirm("Erro!", response.Mensagem);
           this.loading = false;
-          this.resetItem();
-        });
-      } else {
-        this.dialogService.confirm("Erro!", response.Mensagem);
-        this.loading = false;
+        }
       }
+
     } else
-      this.openDialig('Erro!', 'Fomulário Inválido');
+      this.openDialig('Erro!', 'Fomulário inválido ou não pode cadastrar mais.');
 
     this.loading = false;
   }
@@ -181,43 +141,44 @@ export class EmpresaComponent implements OnInit {
   newItem(): void {
     this.formulario.reset();
     this.formulario.enable();
-    this.setModel(3);
+    this.model = new Empresa();
+    this.edit = false;
   }
   resetItem(): void {
     this.formulario.reset();
     this.formulario.disable();
-    this.setModel(3);
+    this.edit = false;
   }
 
-  editItem(item: Empresa): void {
+  async editItem(item: Empresa) : Promise<void> {
     this.newItem();
-    let estadoRID: string = this.getEstado(2, item.Estado);
-    this.setModel(2, item);
+    let estadoRID: string = this.dataService.getEstado(2, item.Estado);
+    this.edit = true;
     this.formulario.setValue({
-      nomeFantasia: item.NomeFantasia,
-      razaoSocial: item.RazaoSocial,
-      codEmpresa: item.CodEmpresa,
-      cnpj: item.Cnpj,
-      rua: item.Rua,
-      num: item.Num,
-      complemento: item.Complemento,
-      bairro: item.Bairro,
-      estado: estadoRID,
-      cidade: this.getCidade(2, item.Cidade),
-      cep: item.Cep,
-      telefone: item.Telefone,
-      email: item.Email,
+      NomeFantasia: item.NomeFantasia,
+      RazaoSocial: item.RazaoSocial,
+      CodEmpresa: item.CodEmpresa,
+      Cnpj: item.Cnpj,
+      Rua: item.Rua,
+      Num: item.Num,
+      Complemento: item.Complemento,
+      Bairro: item.Bairro,
+      Estado: estadoRID,
+      Cidade: this.dataService.getCidade(2, item.Cidade),
+      Cep: item.Cep,
+      Telefone: item.Telefone,
+      Email: item.Email,
     });
-    this.onChangeCidades(estadoRID);
+    this.onChangeCidades(estadoRID);   
   }
 
   async delItem() {
     if(this.formulario.valid){
       this.loading = true;
-      const response: DefaultResponseModel = await this.servidor.chamarApi('api/Empresas/Delete', this.model, true);
+      const response: DefaultResponseModel = await this.servidor.chamarApi('api/Empresas/Delete', this.model);
       let title:string = response.Sucesso ? "Mensagem" : "Erro!";
       this.openDialig(title, response.Mensagem);
-      this.dataSource = await this.dataService.getEmpresas(2, this.session.UserRID, true);
+      //this.dataSource = await this.dataService.getEmpresas(2, this.session.UserRID, true);
       this.loading = false;
     }
   }
@@ -231,9 +192,9 @@ export class EmpresaComponent implements OnInit {
         this.formulario.patchValue({ rua : resp.logradouro});
         this.formulario.patchValue({ bairro : resp.bairro});
         this.formulario.patchValue({ complemento : resp.complemento});
-        this.formulario.patchValue({ estado : this.getEstado(2,resp.uf.toUpperCase())});
-        this.onChangeCidades(this.getEstado(2,resp.uf.toUpperCase()));
-        this.formulario.patchValue({ cidade : this.getCidade(2,resp.localidade)});
+        this.formulario.patchValue({ estado : this.dataService.getEstado(2,resp.uf.toUpperCase())});
+        this.onChangeCidades(this.dataService.getEstado(2,resp.uf.toUpperCase()));
+        this.formulario.patchValue({ cidade : this.dataService.getCidade(2,resp.localidade)});
       }
     }
   }

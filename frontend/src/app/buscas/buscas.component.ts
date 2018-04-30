@@ -14,7 +14,7 @@ import { DataService } from '../services/data.service';
 export class BuscasComponent implements OnInit {
 
   private _lstCidades: Array<CidadeBr> = [];
-  public lstCidades: Array<CidadeBr> = [];
+  public lstCidades: CidadeBr[] = [];
 
   private _lstRestaurantes: Array<Empresa> = [];
   public lstRestaurantes: Array<Empresa> = [];
@@ -83,7 +83,7 @@ export class BuscasComponent implements OnInit {
 
   onKeyUpCidades() {
     let str:string = String(this.formulario.get('LocalName').value).toUpperCase();
-    this.lstCidades = this.dataService.filtrarData(2, str, this._lstCidades);
+    this.lstCidades = this.dataService.filtrarCidades(str, this._lstCidades);
     this.clickLst = true;
   }
 

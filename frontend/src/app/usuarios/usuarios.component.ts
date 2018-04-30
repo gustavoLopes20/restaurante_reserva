@@ -20,7 +20,6 @@ export class UsuariosComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private servidor: ApiService,
     public authService: AuthService
   ) {
   }

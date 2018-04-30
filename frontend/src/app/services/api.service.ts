@@ -33,16 +33,14 @@ export class ApiService {
   }
 
 
-  async chamarApi(api: string, postData: Object, fmtJson?: boolean) {
+  async chamarApi(api: string, postData?: Object) : Promise<any> {
 
-    let access_token = localStorage.getItem('access_token');
-    let token_terminal = localStorage.getItem('terminal_id');
+    let access_token:string = localStorage.getItem('access_token');
 
     let options: RequestOptionsArgs = {
       url: this.mapUrl(api),
       headers: new Headers({
-        'access_token': access_token,
-        'terminal_id': token_terminal,
+        'access_token': access_token
       })
     };
 
@@ -52,12 +50,7 @@ export class ApiService {
 
       try {
         const response:any = await this.http.post(this.mapUrl(api), postData, options).toPromise();
-
-        if (fmtJson) 
-          return JSON.parse(response._body);
-        else
-          return response;
-
+        return JSON.parse(response._body);
       } catch (e) {
         return { sucesso:false , mensagem: 'Erro no servidor.'};
       }
@@ -67,20 +60,17 @@ export class ApiService {
 
       try {
         const response:any = await this.http.get(this.mapUrl(api), options).toPromise();
-        if (fmtJson) 
-          return JSON.parse(response._body);
-        else
-          return response;
+        return JSON.parse(response._body);
       } catch (e) {
         return { sucesso: false , mensagem: 'Erro no servidor.'};
       }
     }
   }
 
-  async getUri(uri: string) {
+  async getUri(uri: string) : Promise<any>{
     try{
-      const requeste: any = await this.http.get(uri).toPromise();
-      return JSON.parse(requeste._body);
+      const response: any = await this.http.get(uri).toPromise();
+      return JSON.parse(response._body);
     }catch(err){
       return { Sucesso: false, Mensagem: err};
     } 

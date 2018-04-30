@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
     this.loading = true;
 
-    let response: LoginResponseModel = await this.servidor.chamarApi('api/acesso/login/', this.formulario.value, true);
+    let response: LoginResponseModel = await this.servidor.chamarApi('api/acesso/login/', this.formulario.value);
 
     if (response.Sucesso) {
       localStorage.setItem("access_token", response.Token);

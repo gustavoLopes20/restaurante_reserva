@@ -44,7 +44,8 @@ export class MesasComponent implements OnInit {
     if(session.Sucesso)
       this.lstEstab = await this.dataService.getEmpresas(2, session.UserRID);
     else
-      this.lstEstab = [];  
+      this.lstEstab = [];
+      
   }
 
   newItem() {
@@ -53,7 +54,7 @@ export class MesasComponent implements OnInit {
 
   async saveItem() {
 
-    let response:DefaultResponseModel = await this.servidor.chamarApi('api/Empresas', this.formulario.value, true);
+    let response:DefaultResponseModel = await this.servidor.chamarApi('api/Empresas', this.formulario.value);
 
     if(response.Sucesso){
       this.formulario.reset();

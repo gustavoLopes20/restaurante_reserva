@@ -18,7 +18,8 @@ export class BuscasService {
     this._buscaModel.next(model);//atualizando a variavel
   }
 
-  private replaceSpecial(str:string){
+  
+  private replaceSpecial(str:string) : string{
     
     str = str.replace(/[ÀÁÂÃ]/,"A");
     str = str.replace(/[àáâã]/,"a");

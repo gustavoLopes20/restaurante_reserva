@@ -37,7 +37,7 @@ export class CadastroComponent implements OnInit {
     event.preventDefault();
     this.loading = true;
 
-    let response:DefaultResponseModel = await this.apiService.chamarApi('api/acesso/cadastro', this.formulario.value, true);
+    let response:DefaultResponseModel = await this.apiService.chamarApi('api/acesso/cadastro', this.formulario.value);
 
     if (response.Sucesso) {
       this.dialogService.confirm("Mensagem",response.Mensagem, false).subscribe(() =>{

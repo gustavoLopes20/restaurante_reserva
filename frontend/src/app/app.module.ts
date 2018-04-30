@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { Routes,RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 //angular material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,10 +15,8 @@ import 'hammerjs';
 //services
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
-import { LocalizacaoService } from './services/localizacao.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
-//modules
-import { AppRoutes } from './app.router';
 
 //font
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -28,6 +28,13 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from './services/dialog.service';
 
+const rotas: Routes = [
+  { path: '', component: LoginComponent, pathMatch: "full" },
+  { path: 'Usuarios', canActivate:[AuthGuardService], loadChildren: 'app/usuarios/usuarios.module#UsuariosModule'}, // Lazy loading -- verificando se o acesso é um usuario
+  { path: 'Buscas', loadChildren: 'app/buscas/buscas.module#BuscasModule'}, // Lazy loading
+  { path: 'Login', component: LoginComponent },
+  { path: 'Cadastro', component: CadastroComponent },
+];
 
 @NgModule({
   declarations: [
@@ -45,7 +52,7 @@ import { DialogService } from './services/dialog.service';
     MatButtonModule,
     MatDialogModule,
     MatProgressBarModule,
-    AppRoutes,
+    RouterModule.forRoot(rotas),
     AngularFontAwesomeModule,    
   ],
   exports: [
@@ -57,7 +64,6 @@ import { DialogService } from './services/dialog.service';
   providers: [
     ApiService,
     AuthService,
-    LocalizacaoService,
     DialogService
   ],
   bootstrap: [AppComponent]

@@ -9,42 +9,42 @@ export class AppDataObject {
 }
 
 export class CadastroUsuario {
-    NomeUsuario:string;
+    NomeUsuario: string;
     Email: string;
     Senha: string;
     Csenha: string;
 }
 
-export class InfoEmpresa extends AppDataObject{
-    Title:string;
-    Descricao:string;
-    Empresa:Empresa;
-    EmpresaId:number;
+export class InfoEmpresa extends AppDataObject {
+    Title: string;
+    Descricao: string;
+    Empresa: Empresa;
+    EmpresaId: number;
 }
 export class Empresa extends AppDataObject {
     NomeFantasia: string;
     RazaoSocial: string;
-    CodEmpresa: string;
+    CodEmpresa?: string;
     Cnpj: string;
     Cep: string;
     Rua: string;
     Num: number;
-    Complemento: string;
+    Complemento?: string;
     Bairro: string;
     Estado: string;
     Cidade: string;
     Telefone: string;
-    Email: string;
-    UsuarioId: number;
-    Usuario: Object;
+    Email?: string;
+    UsuarioId?: number;
+    Usuario?: Object;
 }
 export class AvaliacaoEmpresa extends AppDataObject {
     Descricao: string;
     Avaliacao: number;
     Usuarios_Id: number;
-    Usuario: Object;
+    Usuario?: Object;
     Empresas_Id: number;
-    Empresa: Empresa;
+    Empresa?: Empresa;
 }
 export class Mesa extends AppDataObject {
     EmpresaId: number;
@@ -61,13 +61,13 @@ export class ReservaMesa extends AppDataObject {
     Usuarios_Id: number;
     Empresas_Id: number;
     Mesas_Id: number;
-    Usuario: Object;
+    Usuario?: Object;
     Mesa: Mesa;
-    Empresa: Empresa;
+    Empresa?: Empresa;
 }
 export class PermissaoUsuario extends AppDataObject {
     UsuarioId: number;
-    Usuario: Object;
+    Usuario?: Object;
     Component: number;
     Consultar: boolean;
     Incluir: boolean;
@@ -76,29 +76,28 @@ export class PermissaoUsuario extends AppDataObject {
 }
 
 export class Busca {
-    StrBusca:string;
-    Data:string;
-    Horario:string;
-    QtdPessoas:number;
-    LocalId:number;
-    LocalName:string;
-    constructor(str:string = '', data:string = '', horario:string = '', qtd:number = 1)
-    {
+    StrBusca?: string;
+    Data?: string;
+    Horario?: string;
+    QtdPessoas?: number;
+    LocalId?: number;
+    LocalName?: string;
+    constructor(str: string = '', data: string = '', horario: string = '', qtd: number = 1) {
         this.StrBusca = str;
         this.Data = data;
         this.Horario = horario;
-        this.QtdPessoas = qtd;  
+        this.QtdPessoas = qtd;
     }
 }
 
 //comunicationModels
 export interface IResponse {
-    Sucesso:boolean;
-    Mensagem:string;
+    Sucesso: boolean;
+    Mensagem?: string;
 }
 export class LoginResponseModel {
     UserName: string;
-    UserNivel:number;
+    UserNivel: number;
     Sucesso: boolean = false;
     Mensagem: string;
     Token: string;
@@ -109,49 +108,60 @@ export class SessaoUsuario {
     Sucesso: boolean = false;
     UserName: string;
     UserId: number;
-    UserRID:string;
-    UserNivel:number;
+    UserRID: string;
+    UserNivel: number;
     PermissoesUser: Array<PermissaoUsuario>;
 }
 export class DefaultResponseModel {
     Sucesso: boolean = false;
     Mensagem: string;
-    Retorno: Object;
+    Retorno?: Object;
 }
 
 export interface EstadoBr {
     Id: number;
-    Sigla: string;
-    Nome: string;
-    RID:string;
+    Sigla?: string;
+    Nome?: string;
+    RID?: string;
 }
 export interface CidadeBr {
     Id: number;
-    Nome: string;
-    Estado: string;
-    EstadoSigla:string;
-    RID:string; 
+    Nome?: string;
+    Estado?: string;
+    EstadoSigla?: string;
+    RID?: string;
 }
 
-export interface IComponent{
-    Id:number;
-    Descricao:string;
-    ComponentPai:number;
+export interface IComponent {
+    Id: number;
+    Descricao: string;
 }
-export interface CepResponse{
-    cep:string;
-    logradouro:string;
-    complemento:string;
-    bairro:string;
-    localidade:string;
-    uf:string;
-    unidade:string;
-    ibge:string;
-    gia:string;
+export interface CepResponse {
+    cep: string;
+    logradouro: string;
+    complemento: string;
+    bairro: string;
+    localidade: string;
+    uf: string;
+    unidade?: string;
+    ibge?: string;
+    gia?: string;
 }
-export interface DataRoute{
-    Descricao:string;
-    Link:string;
-    Iclass:string;
-    Ativo:Boolean;
+export interface DataRoute {
+    Descricao: string;
+    Link: string;
+    Iclass: string;
+    Ativo: Boolean;
 }
+
+export const DATA_SOURCE_COMPONENTS: IComponent[] = [
+    { Id: 3290, Descricao: "usuarios" },
+    { Id: 6731, Descricao: "admin" },
+    { Id: 6908, Descricao: "empresa" },
+    { Id: 3233, Descricao: "mesas" },
+    { Id: 2219, Descricao: "reservas" },
+    { Id: 1058, Descricao: "perfil" },
+    { Id: 4486, Descricao: "user" },
+    { Id: 1456, Descricao: "perfil-user" },
+    { Id: 7645, Descricao: "reservas-user" }
+];

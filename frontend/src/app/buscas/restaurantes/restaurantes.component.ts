@@ -11,10 +11,10 @@ import { DataService } from '../../services/data.service';
 })
 export class RestaurantesComponent implements OnInit {
 
-  public cidadeAtual: CidadeBr = { Nome: '', Id: 0, Estado: '', EstadoSigla: '', RID: '' };
+  public cidadeAtual: CidadeBr = { Id: 0};
   private _lstRestaurantes: Array<Empresa> = [];
   public lstRestaurantes: Array<Empresa> = [];
-  public encontrado: IResponse = { Sucesso: false, Mensagem: '' };
+  public encontrado: IResponse = { Sucesso: false};
   public qtdSearch: number = 0;
 
   constructor(
@@ -32,13 +32,13 @@ export class RestaurantesComponent implements OnInit {
 
       if(city){
         this.cidadeAtual = city;
-        this.encontrado = { Sucesso: true, Mensagem: '' };
+        this.encontrado = { Sucesso: true };
         this._lstRestaurantes = await this.dataService.getEmpresas(1);
 
         if(params.restaurante){ //filtrando por nome de restaurante
-          let lst:Array<Empresa> = this.dataService.filtrarData(1, params.restaurante, this._lstRestaurantes);
+          let lst:Array<Empresa> = this.dataService.filtrarEmpresas(params.restaurante, this._lstRestaurantes);
           if(lst.length){
-            this.encontrado = { Sucesso: true, Mensagem: '' };
+            this.encontrado = { Sucesso: true };
             this.lstRestaurantes = lst;
           }else{
             this.encontrado = { Sucesso: false, Mensagem: 'Nenhum restaurante encontrado.' };
@@ -47,7 +47,7 @@ export class RestaurantesComponent implements OnInit {
         }else{//filtrando por cidade
           let lst:Array<Empresa> = this._lstRestaurantes.slice(0);
           if(lst.length){
-            this.encontrado = { Sucesso: true, Mensagem: '' };
+            this.encontrado = { Sucesso: true };
             this.lstRestaurantes = lst;
           }else{
             this.encontrado = { Sucesso: false, Mensagem: 'Nenhum restaurante encontrado.' };

@@ -8,9 +8,8 @@ import { SessaoUsuario } from '../data/dataModels';
 @Injectable()
 export class AuthService {
   
-  private sessaoUser:SessaoUsuario = new SessaoUsuario();
+  private _sessaoUser:SessaoUsuario = new SessaoUsuario();
   private abrirNovaJanela:boolean = true;
-  private autorizado:boolean;
 
   constructor(
     private router: Router,
@@ -18,12 +17,10 @@ export class AuthService {
     private dialogService:DialogService
   )
   {
-    this.authenticate(); 
+    //this.authenticate(); 
   }
 
-  
-
-  public logout(option:number = 0) {
+  public logout(option:number = 0) : void {
     switch(option){
       case 1:
         if(this.abrirNovaJanela){
@@ -42,17 +39,27 @@ export class AuthService {
     }
   }
 
-  public async authenticate(update:boolean = false){
-    let token: string = localStorage.getItem("access_token");
-    if(token){
-      if((this.sessaoUser.Token != token) || update){
-        let sec:SessaoUsuario = await this.servidor.chamarApi('api/acesso/sessoes',null,true);
-        this.sessaoUser = sec;
-      }
-    }else
-      this.sessaoUser = new SessaoUsuario();
+  public authenticate(update:boolean = false) : Promise<SessaoUsuario>{
+    return new Promise<SessaoUsuario>(async resolve =>{
+        let token: string = localStorage.getItem("access_token");
+        if(token){
+          if((this._sessaoUser.Token != token) || update){
+            let sec:SessaoUsuario = await this.servidor.chamarApi('api/acesso/sessoes',null);
+            this._sessaoUser = sec;
+          }
+        }
+        resolve(this._sessaoUser);
+    });
+  }
 
-    return this.sessaoUser;
+  public getRidUser() : Promise<string>{
+    return new Promise<string>(async resolve =>{
+      let session = await this.authenticate();
+      if(session)
+        return session.UserId;
+      else
+        return null;  
+    });
   }
 
 }
