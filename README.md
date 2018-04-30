@@ -15,6 +15,6 @@
 
 <h3>Backend</h3>
 
-<p> ASP .NET CORE C#, Entity framework Core, MySql </p>
+<p> ASP .NET CORE 2.0 C#, Entity framework Core 2, MySql </p>
 
 
